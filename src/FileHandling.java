@@ -18,6 +18,7 @@ public class FileHandling {
         else {
         	System.out.println("Invalid choice. Please try again.");
         	new FileHandling();
+        	return;
         }
     }
     

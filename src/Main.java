@@ -47,6 +47,7 @@ public class Main {
 		else {
 			System.out.println("Invalid choice. Please try again.");
 			main(null);
+			return;
 		}
 		
 		in.close();
