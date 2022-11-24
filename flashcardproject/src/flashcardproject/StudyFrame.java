@@ -61,6 +61,7 @@ public class StudyFrame extends JFrame {
 		JButton flipCard = new JButton("FLIP");
 		flipCard.setFont(new Font("Inter", Font.PLAIN, 24));
 		flipCard.setOpaque(true);
+		flipCard.setFocusable(false);
 		flipCard.setBackground(lightG);
 		flipCard.setBorder(new LineBorder(green, 2));
 		flipCard.addActionListener(new ActionListener() {
@@ -109,6 +110,7 @@ public class StudyFrame extends JFrame {
 		JButton backButton = new JButton("Back");
 		backButton.setFont(new Font("Inter", Font.PLAIN, 24));
 		backButton.setOpaque(true);
+		backButton.setFocusable(false);
 		backButton.setBackground(red);
 		backButton.setBorder(new LineBorder(redComplement, 2));
 		backButton.addActionListener(new ActionListener() {

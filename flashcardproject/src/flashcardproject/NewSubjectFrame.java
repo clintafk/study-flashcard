@@ -19,6 +19,10 @@ import javax.swing.SwingConstants;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner;
 import java.awt.event.ActionEvent;
 
 public class NewSubjectFrame extends JFrame {
@@ -86,12 +90,58 @@ public class NewSubjectFrame extends JFrame {
 		nextButton.setFont(new Font("Inter", Font.PLAIN, 28));
 		nextButton.setOpaque(true);
 		nextButton.setBackground(lightG);
+		nextButton.setFocusable(false);
 		nextButton.setBorder(new LineBorder(green, 2));
 		nextButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CurrentSubjectFrame currentSubjectFrame = new CurrentSubjectFrame();
-				currentSubjectFrame.setVisible(true);
-				dispose();
+				String fileName = textField.getText();
+
+		        String theFile = fileName + ".txt";
+		        
+		        
+		        try {
+		            File myObj = new File("Subjects/"+theFile);
+		            
+		            
+		            if (myObj.createNewFile()) {
+		                System.out.println("Subject created");
+		            } else {
+		            	System.out.println("Subject already exists. Please enter another subject.");
+		            	return;
+		            }
+		        } catch (IOException er) {
+		            er.printStackTrace();
+		        }
+		        
+		        try {
+		        	File indexFile = new File("Subjects.txt");
+		        	indexFile.createNewFile();
+		        	Scanner newFileContent = new Scanner(indexFile);
+		        	String indexContent = "";
+		        	
+		        	while(newFileContent.hasNextLine()) {
+		        		String data = newFileContent.nextLine();
+		        		indexContent += (data + "\n");
+		        	}
+		        	
+		        	newFileContent.close();
+		        	
+		        	FileWriter indexInp = new FileWriter("Subjects.txt");        	
+		        	indexInp.write(indexContent+fileName);
+		        	indexInp.close();
+		        } catch (IOException er) {
+		        	System.out.println("An error occured.");
+		        	er.printStackTrace();
+		        }
+		        
+				CurrentSubjectFrame currentSubjectFrame;
+				try {
+					currentSubjectFrame = new CurrentSubjectFrame();
+					currentSubjectFrame.setVisible(true);
+					dispose();
+				} catch (Exception er) {
+					er.printStackTrace();
+				}
 			}
 		});
 		nextButton.setBounds(266, 371, 273, 48);
@@ -103,6 +153,7 @@ public class NewSubjectFrame extends JFrame {
 		backButton.setFont(new Font("Inter", Font.PLAIN, 24));
 		backButton.setOpaque(true);
 		backButton.setBackground(red);
+		backButton.setFocusable(false);
 		backButton.setBorder(new LineBorder(redComplement, 2));
 		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

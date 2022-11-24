@@ -52,6 +52,7 @@ public class ThemeFrame extends JFrame {
 		JButton backButton = new JButton("Back");
 		backButton.setFont(new Font("Inter", Font.PLAIN, 24));
 		backButton.setOpaque(true);
+		backButton.setFocusable(false);
 		backButton.setBackground(red);
 		backButton.setBorder(new LineBorder(redComplement, 2));
 		backButton.addActionListener(new ActionListener() {
@@ -69,6 +70,7 @@ public class ThemeFrame extends JFrame {
 		JButton lightThemeButton = new JButton("Light Theme");
 		lightThemeButton.setFont(new Font("Inter", Font.PLAIN, 32));
 		lightThemeButton.setOpaque(true);
+		lightThemeButton.setFocusable(false);
 		lightThemeButton.setBackground(yellow);
 		lightThemeButton.setBorder(new LineBorder(yellowComplement, 2));
 		lightThemeButton.addActionListener(new ActionListener() {
@@ -84,6 +86,7 @@ public class ThemeFrame extends JFrame {
 		JButton darkThemeButton = new JButton("Dark Theme");
 		darkThemeButton.setFont(new Font("Inter", Font.PLAIN, 32));
 		darkThemeButton.setOpaque(true);
+		darkThemeButton.setFocusable(false);
 		darkThemeButton.setBackground(darkBlue);
 		darkThemeButton.setBorder(new LineBorder(darkBlueComplement, 2));
 		darkThemeButton.setBounds(213, 244, 393, 84);
@@ -99,6 +102,7 @@ public class ThemeFrame extends JFrame {
 		JButton saveButton = new JButton("Save");
 		saveButton.setFont(new Font("Inter", Font.PLAIN, 24));
 		saveButton.setOpaque(true);
+		saveButton.setFocusable(false);
 		saveButton.setBackground(lightG);
 		saveButton.setBorder(new LineBorder(green, 2));
 		saveButton.addActionListener(new ActionListener() {

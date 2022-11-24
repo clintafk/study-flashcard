@@ -51,6 +51,7 @@ public class OptionsFrame extends JFrame {
 		JButton themesButton = new JButton("THEME");
 		themesButton.setFont(new Font("Inter", Font.PLAIN, 32));
 		themesButton.setOpaque(true);
+		themesButton.setFocusable(false);
 		themesButton.setBackground(blue);
 		themesButton.setBorder(new LineBorder(blueComplement, 2));
 		themesButton.addActionListener(new ActionListener() {
@@ -69,6 +70,7 @@ public class OptionsFrame extends JFrame {
 		JButton challengeTimerButton = new JButton("CHALLENGE TIMER");
 		challengeTimerButton.setFont(new Font("Inter", Font.PLAIN, 32));
 		challengeTimerButton.setOpaque(true);
+		challengeTimerButton.setFocusable(false);
 		challengeTimerButton.setBackground(yellow);
 		challengeTimerButton.setBorder(new LineBorder(yellowComplement, 2));
 		challengeTimerButton.addActionListener(new ActionListener() {
@@ -87,6 +89,7 @@ public class OptionsFrame extends JFrame {
 		JButton deleteAllSubjectsButton = new JButton("DELETE ALL SUBJECTS");
 		deleteAllSubjectsButton.setFont(new Font("Inter", Font.PLAIN, 32));
 		deleteAllSubjectsButton.setOpaque(true);
+		deleteAllSubjectsButton.setFocusable(false);
 		deleteAllSubjectsButton.setBackground(darkRed);
 		deleteAllSubjectsButton.setBorder(new LineBorder(darkRedComplement, 2));
 		deleteAllSubjectsButton.addActionListener(new ActionListener() {
@@ -102,6 +105,7 @@ public class OptionsFrame extends JFrame {
 		JButton backButton = new JButton("Back");
 		backButton.setFont(new Font("Inter", Font.PLAIN, 24));
 		backButton.setOpaque(true);
+		backButton.setFocusable(false);
 		backButton.setBackground(red);
 		backButton.setBorder(new LineBorder(redComplement, 2));
 		backButton.addActionListener(new ActionListener() {
@@ -115,6 +119,3 @@ public class OptionsFrame extends JFrame {
 		contentPane.add(backButton);
 	}
 }
-
-
-

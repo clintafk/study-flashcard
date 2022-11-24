@@ -53,6 +53,7 @@ public class EditFrame extends JFrame {
 		newSubjectButton.setFont(new Font("Inter", Font.PLAIN, 32));
 		newSubjectButton.setOpaque(true);
 		newSubjectButton.setBackground(lightG);
+		newSubjectButton.setFocusable(false);
 		newSubjectButton.setBorder(new LineBorder(green, 2));
 		newSubjectButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -71,12 +72,17 @@ public class EditFrame extends JFrame {
 		currentSubjectButton.setFont(new Font("Inter", Font.PLAIN, 32));
 		currentSubjectButton.setOpaque(true);
 		currentSubjectButton.setBackground(yellow);
+		currentSubjectButton.setFocusable(false);
 		currentSubjectButton.setBorder(new LineBorder(yellowComplement, 2));
 		currentSubjectButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				try {
 				CurrentSubjectFrame currentSubjectFrame = new CurrentSubjectFrame();
 				currentSubjectFrame.setVisible(true);
 				dispose();
+				} catch(Exception er) {
+					er.printStackTrace();
+				}
 			}
 		});
 		currentSubjectButton.setFont(new Font("Inter", Font.PLAIN, 32));
@@ -99,6 +105,7 @@ public class EditFrame extends JFrame {
 		backButton.setFont(new Font("Inter", Font.PLAIN, 24));
 		backButton.setOpaque(true);
 		backButton.setBackground(red);
+		backButton.setFocusable(false);
 		backButton.setBorder(new LineBorder(redComplement, 2));
 		
 		backButton.addActionListener(new ActionListener() {
@@ -112,6 +119,3 @@ public class EditFrame extends JFrame {
 		contentPane.add(backButton);
 	}
 }
-
-
-

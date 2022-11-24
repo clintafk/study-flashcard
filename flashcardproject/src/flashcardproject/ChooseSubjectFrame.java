@@ -6,6 +6,10 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Scanner;
 
 import javax.swing.AbstractListModel;
 import javax.swing.BorderFactory;
@@ -43,7 +47,7 @@ public class ChooseSubjectFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ChooseSubjectFrame() {
+	public ChooseSubjectFrame() throws IOException, FileNotFoundException{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		setSize(800, 600);
@@ -60,6 +64,7 @@ public class ChooseSubjectFrame extends JFrame {
 		backButton.setFont(new Font("Inter", Font.PLAIN, 24));
 		backButton.setOpaque(true);
 		backButton.setBackground(red);
+		backButton.setFocusable(false);
 		backButton.setBorder(new LineBorder(redComplement, 2));
 		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -86,10 +91,34 @@ public class ChooseSubjectFrame extends JFrame {
 		list.setFixedCellHeight(75);
 		list.setCellRenderer(getRenderer());
 		list.setFont(new Font("Inter", Font.PLAIN, 36));
+		String[] subjects;
+		
+		File subj = new File("Subjects.txt");
+		Scanner subSc = new Scanner(subj);
+		int range = 1;
+		while(subSc.hasNextLine()) {
+			subSc.nextLine();
+			range++;
+		}
+		subSc.close();
+		
+		Scanner subCon = new Scanner(subj);
+			
+		subjects = new String[range-1];
+		
+		int i = 0;
+		while(subCon.hasNextLine()) {
+			String data = subCon.nextLine();
+			subjects[i] = data;
+			i++;
+		}
+		System.out.println(3);
+		subCon.close();
+		final String[] valSubj = subjects;
+		
 		list.setModel(new AbstractListModel<String>() {
 			private static final long serialVersionUID = 1L;
-			//private static final long serialVersionUID = 1L;
-			String[] values = new String[] {"Geography", "Discrete Mathematics", "SocEcon", "History", "Computer Programming", "Networking", "Computer History", "Automata Theory", "Web Design", "Web Programming", "Server Programming"};
+			String[] values = valSubj;
 			public int getSize() {
 				return values.length;
 			}
@@ -114,6 +143,7 @@ public class ChooseSubjectFrame extends JFrame {
 		nextButton.setFont(new Font("Inter", Font.PLAIN, 24));
 		nextButton.setOpaque(true);
 		nextButton.setBackground(lightG);
+		nextButton.setFocusable(false);
 		nextButton.setBorder(new LineBorder(green, 2));
 		nextButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

@@ -58,6 +58,7 @@ public class AnswerFrame extends JFrame {
 		nextCardButton.setFont(new Font("Inter", Font.PLAIN, 24));
 		nextCardButton.setOpaque(true);
 		nextCardButton.setBackground(lightG);
+		nextCardButton.setFocusable(false);
 		nextCardButton.setBorder(new LineBorder(green, 2));
 		nextCardButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

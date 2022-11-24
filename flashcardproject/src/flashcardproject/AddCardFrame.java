@@ -128,10 +128,11 @@ public class AddCardFrame extends JFrame {
 		backButton.setFont(new Font("Inter", Font.PLAIN, 24));
 		backButton.setOpaque(true);
 		backButton.setBackground(red);
+		backButton.setFocusable(false);
 		backButton.setBorder(new LineBorder(redComplement, 2));
 		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				EditCardFrame editCardFrame = new EditCardFrame();
+				EditCardFrame editCardFrame = new EditCardFrame(null);
 				editCardFrame.setVisible(true);
 				dispose();
 			}
@@ -145,9 +146,10 @@ public class AddCardFrame extends JFrame {
 		saveButton.setOpaque(true);
 		saveButton.setBackground(lightG);
 		saveButton.setBorder(new LineBorder(green, 2));
+		saveButton.setFocusable(false);
 		saveButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				EditCardFrame editCardFrame = new EditCardFrame();
+				EditCardFrame editCardFrame = new EditCardFrame(null);
 				editCardFrame.setVisible(true);
 				dispose();
 			}

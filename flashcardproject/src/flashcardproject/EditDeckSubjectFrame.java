@@ -29,7 +29,7 @@ public class EditDeckSubjectFrame extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					EditDeckSubjectFrame frame = new EditDeckSubjectFrame();
+					EditDeckSubjectFrame frame = new EditDeckSubjectFrame(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -41,7 +41,7 @@ public class EditDeckSubjectFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public EditDeckSubjectFrame() {
+	public EditDeckSubjectFrame(String subj) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		setSize(800, 600);
@@ -59,12 +59,17 @@ public class EditDeckSubjectFrame extends JFrame {
 		backButton.setFont(new Font("Inter", Font.PLAIN, 24));
 		backButton.setOpaque(true);
 		backButton.setBackground(red);
+		backButton.setFocusable(false);
 		backButton.setBorder(new LineBorder(redComplement, 2));
 		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CurrentSubjectFrame currentSubjectFrame = new CurrentSubjectFrame();
-				currentSubjectFrame.setVisible(true);
-				dispose();
+				try {
+					CurrentSubjectFrame currentSubjectFrame = new CurrentSubjectFrame();
+					currentSubjectFrame.setVisible(true);
+					dispose();
+				} catch(Exception er) {
+					er.printStackTrace();
+				}
 			}
 		});
 		backButton.setBounds(6, 6, 117, 29);
@@ -83,12 +88,17 @@ public class EditDeckSubjectFrame extends JFrame {
 		saveButton.setFont(new Font("Inter", Font.PLAIN, 24));
 		saveButton.setOpaque(true);
 		saveButton.setBackground(lightG);
+		saveButton.setFocusable(false);
 		saveButton.setBorder(new LineBorder(green, 2));
 		saveButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CurrentSubjectFrame currentSubjectFrame = new CurrentSubjectFrame();
-				currentSubjectFrame.setVisible(true);
-				dispose();
+				try {
+					CurrentSubjectFrame currentSubjectFrame = new CurrentSubjectFrame();
+					currentSubjectFrame.setVisible(true);
+					dispose();
+				} catch(Exception er) {
+					er.printStackTrace();
+				}
 			}
 		});
 		saveButton.setBounds(677, 6, 117, 29);
@@ -101,7 +111,7 @@ public class EditDeckSubjectFrame extends JFrame {
 		panel.setLayout(null);
 		
 		JTextField txtGeography = new JTextField(20);
-		txtGeography.setText("Geography");
+		txtGeography.setText(subj);
 		txtGeography.setHorizontalAlignment(SwingConstants.CENTER);
 		txtGeography.setFont(new Font("Inter", Font.PLAIN, 32));
 		txtGeography.setBackground(UIManager.getColor("Button.background"));
@@ -122,10 +132,11 @@ public class EditDeckSubjectFrame extends JFrame {
 		editCardButton.setFont(new Font("Inter", Font.PLAIN, 24));
 		editCardButton.setOpaque(true);
 		editCardButton.setBackground(orange);
+		editCardButton.setFocusable(false);
 		editCardButton.setBorder(new LineBorder(orangeComplement, 2));
 		editCardButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				EditCardFrame editCardFrame = new EditCardFrame();
+				EditCardFrame editCardFrame = new EditCardFrame(subj);
 				editCardFrame.setVisible(true);
 				dispose();
 			}
@@ -141,10 +152,11 @@ public class EditDeckSubjectFrame extends JFrame {
 		deleteSubjButton.setFont(new Font("Inter", Font.PLAIN, 24));
 		deleteSubjButton.setOpaque(true);
 		deleteSubjButton.setBackground(red);
+		deleteSubjButton.setFocusable(false);
 		deleteSubjButton.setBorder(new LineBorder(redComplement, 2));
 		deleteSubjButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DeleteSubjectFrame deleteSubjectFrame = new DeleteSubjectFrame();
+				DeleteSubjectFrame deleteSubjectFrame = new DeleteSubjectFrame(subj);
 				deleteSubjectFrame.setVisible(true);
 				dispose();
 			}

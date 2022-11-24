@@ -54,13 +54,18 @@ public class PlayFrame extends JFrame {
 		normalModeButton.setBackground(new Color(0, 255, 23));
 		normalModeButton.setFont(new Font("Inter", Font.PLAIN, 32));
 		normalModeButton.setOpaque(true);
+		normalModeButton.setFocusable(false);
 		normalModeButton.setBackground(lightG);
 		normalModeButton.setBorder(new LineBorder(green, 2));
 		normalModeButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ChooseSubjectFrame chooseSubject = new ChooseSubjectFrame();
-				chooseSubject.setVisible(true);
-				dispose();
+				try {
+					ChooseSubjectFrame chooseSubject = new ChooseSubjectFrame();
+					chooseSubject.setVisible(true);
+					dispose();
+				} catch(Exception er) {
+					er.printStackTrace();
+				}
 			}
 		});
 		normalModeButton.setBounds(69, 172, 305, 86);
@@ -72,13 +77,18 @@ public class PlayFrame extends JFrame {
 		JButton challengeModeButton = new JButton("Challenge Mode");
 		challengeModeButton.setFont(new Font("Inter", Font.PLAIN, 32));
 		challengeModeButton.setOpaque(true);
+		challengeModeButton.setFocusable(false);
 		challengeModeButton.setBackground(yellow);
 		challengeModeButton.setBorder(new LineBorder(yellowComplement, 2));
 		challengeModeButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ChooseSubjectFrame chooseSubject = new ChooseSubjectFrame();
-				chooseSubject.setVisible(true);
-				dispose();
+				try {
+					ChooseSubjectFrame chooseSubject = new ChooseSubjectFrame();
+					chooseSubject.setVisible(true);
+					dispose();
+				} catch(Exception er) {
+					er.printStackTrace();
+				}
 			}
 		});
 		challengeModeButton.setFont(new Font("Inter", Font.PLAIN, 32));
@@ -98,6 +108,7 @@ public class PlayFrame extends JFrame {
 		JButton backButton = new JButton("Back");
 		backButton.setFont(new Font("Inter", Font.PLAIN, 24));
 		backButton.setOpaque(true);
+		backButton.setFocusable(false);
 		backButton.setBackground(red);
 		backButton.setBorder(new LineBorder(redComplement, 2));
 		backButton.addActionListener(new ActionListener() {
@@ -112,5 +123,3 @@ public class PlayFrame extends JFrame {
 		contentPane.add(backButton);
 	}
 }
-
-

@@ -71,11 +71,16 @@ public class FinishDeckFrame extends JFrame {
 		Color lightG = Color.decode("#D5E8D4");
 		Color green = Color.decode("#82b366");
 		JButton nextButton = new JButton("Next");
+		nextButton.setFocusable(false);
 		nextButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ChooseSubjectFrame chooseSubjectFrame = new ChooseSubjectFrame();
-				chooseSubjectFrame.setVisible(true);
-				dispose();
+				try {
+					ChooseSubjectFrame chooseSubjectFrame = new ChooseSubjectFrame();
+					chooseSubjectFrame.setVisible(true);
+					dispose();
+				} catch(Exception er) {
+					er.printStackTrace();
+				}
 			}
 		});
 		nextButton.setFont(new Font("Inter", Font.PLAIN, 24));

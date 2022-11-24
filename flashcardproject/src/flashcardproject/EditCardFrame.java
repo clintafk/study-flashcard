@@ -18,6 +18,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.util.Scanner;
 import java.awt.event.ActionEvent;
 
 public class EditCardFrame extends JFrame {
@@ -31,7 +33,7 @@ public class EditCardFrame extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					EditCardFrame frame = new EditCardFrame();
+					EditCardFrame frame = new EditCardFrame(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -43,7 +45,7 @@ public class EditCardFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public EditCardFrame() {
+	public EditCardFrame(String subj) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		setSize(800, 600);
@@ -65,12 +67,17 @@ public class EditCardFrame extends JFrame {
 		backButton.setFont(new Font("Inter", Font.PLAIN, 24));
 		backButton.setOpaque(true);
 		backButton.setBackground(red);
+		backButton.setFocusable(false);
 		backButton.setBorder(new LineBorder(redComplement, 2));
 		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				EditDeckSubjectFrame editDeckSubjectFrame = new EditDeckSubjectFrame();
-				editDeckSubjectFrame.setVisible(true);
-				dispose();
+				try {
+					CurrentSubjectFrame currentFrame = new CurrentSubjectFrame();
+					currentFrame.setVisible(true);
+					dispose();
+				} catch (Exception er) {
+					er.printStackTrace();
+				}
 	
 			}
 		});
@@ -83,6 +90,7 @@ public class EditCardFrame extends JFrame {
 		addCardButton.setFont(new Font("Inter", Font.PLAIN, 24));
 		addCardButton.setOpaque(true);
 		addCardButton.setBackground(lightG);
+		addCardButton.setFocusable(false);
 		addCardButton.setBorder(new LineBorder(green, 2));
 		addCardButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -94,7 +102,7 @@ public class EditCardFrame extends JFrame {
 		addCardButton.setBounds(632, 6, 162, 29);
 		contentPane.add(addCardButton);
 		
-		JLabel subjectLabel = new JLabel("Geography");
+		JLabel subjectLabel = new JLabel(subj);
 		subjectLabel.setFont(new Font("Inter", Font.PLAIN, 36));
 		subjectLabel.setBounds(313, 28, 231, 44);
 		contentPane.add(subjectLabel);
@@ -104,9 +112,54 @@ public class EditCardFrame extends JFrame {
 		list.setFixedCellHeight(75);
 		list.setCellRenderer(getRenderer());
 		list.setFont(new Font("MonoLisa", Font.PLAIN, 16));
+		
+		Scanner theRead;
+        String questionAndAnswer = "";
+        int numOfQuestion = 0;
+        
+        try {
+             File myObj = new File("./Subjects/"+subj+".txt");
+             theRead = new Scanner(myObj);
+             while(theRead.hasNextLine()) {
+                 String data = theRead.nextLine();
+                 questionAndAnswer += (data + "\n");
+                 if(data.equals("{"))
+                	 numOfQuestion++;
+             }
+             theRead.close();
+        } catch(Exception e) {
+            System.out.println("An error occured.");
+            e.printStackTrace();
+        }
+        
+		String[] theQuestions = new String[numOfQuestion];
+    	for(int i = 0; i<theQuestions.length; i++)
+    		theQuestions[i] = "";
+    	
+    	boolean scanQuestion = false;
+    	char[] theSetCharred = questionAndAnswer.toCharArray();
+    	int index = 0;
+    	
+    	for(int i = 0; i<theSetCharred.length; i++) {
+    		if(theSetCharred[i] == '{') {
+    			scanQuestion = true;
+    			i++;
+    			continue;
+    		}
+    		else if(theSetCharred[i] == '\n' && scanQuestion) {
+    			scanQuestion = false;
+    			index++;
+    		}
+    		else if(scanQuestion){
+    			theQuestions[index] += theSetCharred[i];
+    		}
+    	}
+    	
+    	final String[] valQue = theQuestions;
+    	
 		list.setModel(new AbstractListModel<String>() {
 			private static final long serialVersionUID = 1L;
-			String[] values = new String[] {"What is the capital of the Philippines?", "Cairo is which capital of which country?", "Madagascar is surrounded by which ocean?", "Which country is the second biggest in the world?", "What is the name of the longest river in Africa?", "What is the capital of Mexico?", "What is the name of the largest country in the world?", "What country ends with the letter Q?", "Which country is home to the most volcanos?"};
+			String[] values = valQue;
 			public int getSize() {
 				return values.length;
 			}

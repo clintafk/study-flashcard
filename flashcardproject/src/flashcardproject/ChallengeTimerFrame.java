@@ -62,6 +62,7 @@ public class ChallengeTimerFrame extends JFrame {
 		backButton.setFont(new Font("Inter", Font.PLAIN, 24));
 		backButton.setOpaque(true);
 		backButton.setBackground(red);
+		backButton.setFocusable(false);
 		backButton.setBorder(new LineBorder(redComplement, 2));
 		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -79,6 +80,7 @@ public class ChallengeTimerFrame extends JFrame {
 		saveButton.setBounds(677, 6, 117, 29);
 		saveButton.setFont(new Font("Inter", Font.PLAIN, 24));
 		saveButton.setOpaque(true);
+		saveButton.setFocusable(false);
 		saveButton.setBackground(lightG);
 		saveButton.setBorder(new LineBorder(green, 2));
 		saveButton.addActionListener(new ActionListener() {

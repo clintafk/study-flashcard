@@ -9,6 +9,10 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Scanner;
 import java.awt.event.ActionEvent;
 import javax.swing.JList;
 import javax.swing.AbstractListModel;
@@ -18,9 +22,12 @@ import java.awt.Font;
 import javax.swing.JScrollPane;
 import javax.swing.ListCellRenderer;
 import javax.swing.border.LineBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 public class CurrentSubjectFrame extends JFrame {
 	private JPanel contentPane;
+	public String selected;
 
 	/**
 	 * Launch the application.
@@ -41,7 +48,7 @@ public class CurrentSubjectFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public CurrentSubjectFrame() {
+	public CurrentSubjectFrame() throws IOException, FileNotFoundException{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		setSize(800, 600);
@@ -59,6 +66,7 @@ public class CurrentSubjectFrame extends JFrame {
 		backButton.setFont(new Font("Inter", Font.PLAIN, 24));
 		backButton.setOpaque(true);
 		backButton.setBackground(red);
+		backButton.setFocusable(false);
 		backButton.setBorder(new LineBorder(redComplement, 2));
 		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -88,15 +96,45 @@ public class CurrentSubjectFrame extends JFrame {
 		list.setFixedCellHeight(75);
 		list.setCellRenderer(getRenderer());
 		list.setFont(new Font("Inter", Font.PLAIN, 36));
+		String[] subjects;
+		
+		File subj = new File("Subjects.txt");
+		Scanner subSc = new Scanner(subj);
+		int range = 1;
+		while(subSc.hasNextLine()) {
+			subSc.nextLine();
+			range++;
+		}
+		subSc.close();
+		
+		Scanner subCon = new Scanner(subj);
+			
+		subjects = new String[range-1];
+		
+		int i = 0;
+		while(subCon.hasNextLine()) {
+			String data = subCon.nextLine();
+			subjects[i] = data;
+			i++;
+		}
+		subCon.close();
+		final String[] valSubj = subjects;
+		
 		list.setModel(new AbstractListModel<String>() {
 			private static final long serialVersionUID = 1L;
-			//private static final long serialVersionUID = 1L;
-			String[] values = new String[] {"Geography", "Discrete Mathematics", "SocEcon", "History", "Computer Programming", "Networking", "Computer History", "Automata Theory", "Web Design", "Web Programming", "Server Programming"};
+			String[] values = valSubj;
 			public int getSize() {
 				return values.length;
 			}
 			public String getElementAt(int index) {
 				return values[index];
+			}
+		});
+		list.addListSelectionListener(new ListSelectionListener() {
+			public void valueChanged(ListSelectionEvent arg0) {
+				if (!arg0.getValueIsAdjusting()) {
+					selected = list.getSelectedValue().toString();
+				}
 			}
 		});
 		
@@ -116,10 +154,11 @@ public class CurrentSubjectFrame extends JFrame {
 		nextButton.setFont(new Font("Inter", Font.PLAIN, 24));
 		nextButton.setOpaque(true);
 		nextButton.setBackground(lightG);
+		nextButton.setFocusable(false);
 		nextButton.setBorder(new LineBorder(green, 2));
 		nextButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				EditDeckSubjectFrame editDeckSubject = new EditDeckSubjectFrame();
+				EditDeckSubjectFrame editDeckSubject = new EditDeckSubjectFrame(selected);
 				editDeckSubject.setVisible(true);
 				dispose();
 			}

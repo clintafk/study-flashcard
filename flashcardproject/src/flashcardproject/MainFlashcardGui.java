@@ -7,6 +7,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import javax.swing.border.LineBorder;
@@ -35,6 +37,14 @@ public class MainFlashcardGui extends JFrame {
 	 * Create the frame.
 	 */
 	public MainFlashcardGui() {
+		try {
+		File indexFile = new File("Subjects.txt");
+		indexFile.createNewFile();
+		File subjectFolder = new File("./Subjects");
+	    subjectFolder.mkdir();
+		} catch (IOException er) {
+			er.printStackTrace();
+		}
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 600);
 		contentPane = new JPanel();
@@ -51,6 +61,7 @@ public class MainFlashcardGui extends JFrame {
 		playButton.setOpaque(true);
 		playButton.setBackground(lightG);
 		playButton.setBorder(new LineBorder(green, 2));
+		playButton.setFocusable(false);
 		playButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				PlayFrame playFrame = new PlayFrame();
@@ -78,6 +89,7 @@ public class MainFlashcardGui extends JFrame {
 		editButton.setBackground(yellow);
 		editButton.setBorder(new LineBorder(yellowComplement, 2));
 		editButton.setBounds(302, 193, 212, 88);
+		editButton.setFocusable(false);
 		contentPane.add(editButton);
 		
 		Color blue = Color.decode("#dae8fc");
@@ -94,12 +106,14 @@ public class MainFlashcardGui extends JFrame {
 		optionsButton.setFont(new Font("Inter", Font.PLAIN, 32));
 		optionsButton.setBackground(blue);
 		optionsButton.setBorder(new LineBorder(blueComplement, 2));
+		optionsButton.setFocusable(false);
 		optionsButton.setBounds(302, 293, 212, 88);
 		contentPane.add(optionsButton);
 		
 		Color red = Color.decode("#f8cecc");
 		Color redComplement = Color.decode("#b85450");
 		JButton exitButton = new JButton("EXIT");
+		exitButton.setFocusable(false);
 		exitButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);

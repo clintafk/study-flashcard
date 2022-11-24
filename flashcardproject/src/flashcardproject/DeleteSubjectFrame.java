@@ -14,6 +14,9 @@ import java.awt.SystemColor;
 import javax.swing.BorderFactory;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileWriter;
+import java.util.Scanner;
 import java.awt.event.ActionEvent;
 import javax.swing.border.LineBorder;
 
@@ -29,7 +32,7 @@ public class DeleteSubjectFrame extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					DeleteSubjectFrame frame = new DeleteSubjectFrame();
+					DeleteSubjectFrame frame = new DeleteSubjectFrame(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -41,7 +44,7 @@ public class DeleteSubjectFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public DeleteSubjectFrame() {
+	public DeleteSubjectFrame(String subj) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		setSize(800, 600);
@@ -72,7 +75,7 @@ public class DeleteSubjectFrame extends JFrame {
 		contentPane.add(panel);
 		
 		textField = new JTextField(10);
-		textField.setText("Geography");
+		textField.setText(subj);
 		textField.setHorizontalAlignment(SwingConstants.CENTER);
 		textField.setFont(new Font("Inter", Font.PLAIN, 32));
 		textField.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
@@ -86,12 +89,36 @@ public class DeleteSubjectFrame extends JFrame {
 		confirmDeleteButton.setFont(new Font("Inter", Font.PLAIN, 24));
 		confirmDeleteButton.setOpaque(true);
 		confirmDeleteButton.setBackground(red);
+		confirmDeleteButton.setFocusable(false);
 		confirmDeleteButton.setBorder(new LineBorder(redComplement, 2));
 		confirmDeleteButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CurrentSubjectFrame currentSubjectFrame = new CurrentSubjectFrame();
-				currentSubjectFrame.setVisible(true);
-				dispose();
+				try {
+					File subjectToDelete = new File("./Subjects/"+subj+".txt");
+					subjectToDelete.delete();
+					
+					File removeEntry  = new File("Subjects.txt");
+					Scanner scanEntry = new Scanner(removeEntry);
+					String revisedContent = "";
+					
+					while(scanEntry.hasNextLine()) {
+						String data = scanEntry.nextLine();
+						if(data.equals(subj))
+							continue;
+						revisedContent += data+"\n";
+					}
+					scanEntry.close();
+					
+					FileWriter updateContent = new FileWriter(removeEntry);
+					updateContent.write(revisedContent);
+					updateContent.close();
+					
+					CurrentSubjectFrame currentSubjectFrame = new CurrentSubjectFrame();
+					currentSubjectFrame.setVisible(true);
+					dispose();
+				} catch(Exception er) {
+					er.printStackTrace();
+				}
 			}
 		});
 		confirmDeleteButton.setBounds(263, 385, 313, 51);
