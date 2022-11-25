@@ -6,3 +6,6 @@ FOR DELETE SUBJECT FRAME:
 *Need cancel button
 
 One more frame for confirm or cancel deletion of all subjects
+
+FOR ANSWERFRAME AND STUDYFRAME:
+*Make the texts for answer, hint, and question bigger
