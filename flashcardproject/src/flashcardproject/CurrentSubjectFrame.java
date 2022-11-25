@@ -137,6 +137,9 @@ public class CurrentSubjectFrame extends JFrame {
 				}
 			}
 		});
+		try {
+			list.setSelectionInterval(0, 0);
+		} catch(NullPointerException er) {}
 		
 		DefaultListCellRenderer renderer =  (DefaultListCellRenderer)list.getCellRenderer();  
 		renderer.setHorizontalAlignment(JLabel.CENTER);

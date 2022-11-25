@@ -94,7 +94,7 @@ public class EditCardFrame extends JFrame {
 		addCardButton.setBorder(new LineBorder(green, 2));
 		addCardButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AddCardFrame addCardFrame = new AddCardFrame();
+				AddCardFrame addCardFrame = new AddCardFrame(subj);
 				addCardFrame.setVisible(true);
 				dispose();
 			}

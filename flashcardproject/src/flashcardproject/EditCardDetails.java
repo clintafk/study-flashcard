@@ -75,8 +75,7 @@ public class EditCardDetails extends JFrame {
 		textField.setFont(new Font("Inter", Font.PLAIN, 20));
 		textField.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		textField.setBackground(new Color(245, 245, 245));
-		textField.setBounds(6, 26, 592, 72);
-		textField.setText("What is the capital of the Philippines?");
+		textField.setBounds(6, 26, 592, 72);;
 		panel.add(textField);
 		
 		lblNewLabel = new JLabel("question");
@@ -99,7 +98,6 @@ public class EditCardDetails extends JFrame {
 		textField_1.setBorder(null);
 		textField_1.setBackground(lightG);
 		textField_1.setBounds(6, 22, 592, 72);
-		textField_1.setText("Manila");
 		panel_1.add(textField_1);
 		
 		lblAnswer = new JLabel("answer");
@@ -122,7 +120,6 @@ public class EditCardDetails extends JFrame {
 		textField_2.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		textField_2.setBackground(orange);
 		textField_2.setBounds(6, 26, 486, 72);
-		textField_2.setText("MNL");
 		panel_2.add(textField_2);
 		
 		lblHint = new JLabel("hint");
@@ -157,6 +154,7 @@ public class EditCardDetails extends JFrame {
 		saveButton.setBorder(new LineBorder(green, 2));
 		saveButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 			}
 		});
 		saveButton.setBounds(677, 6, 117, 29);

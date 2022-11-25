@@ -1,0 +1,6 @@
+SUGGESTIONS:
+FOR EDIT CARD DETAILS:
+*Need editing button
+*Need delete button
+FOR DELETE SUBJECT FRAME:
+*Need cancel button

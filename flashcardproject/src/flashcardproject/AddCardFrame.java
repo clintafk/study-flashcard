@@ -12,6 +12,9 @@ import javax.swing.JButton;
 import java.awt.Color;
 import javax.swing.border.LineBorder;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileWriter;
+import java.util.Scanner;
 import java.awt.event.ActionEvent;
 
 public class AddCardFrame extends JFrame {
@@ -32,7 +35,7 @@ public class AddCardFrame extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AddCardFrame frame = new AddCardFrame();
+					AddCardFrame frame = new AddCardFrame(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -44,7 +47,7 @@ public class AddCardFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AddCardFrame() {
+	public AddCardFrame(String subj) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		setSize(800, 600);
@@ -149,7 +152,27 @@ public class AddCardFrame extends JFrame {
 		saveButton.setFocusable(false);
 		saveButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				EditCardFrame editCardFrame = new EditCardFrame(null);
+				try {
+					File subjToEdit = new File("./Subjects/"+subj+".txt");
+					Scanner scanSubj = new Scanner(subjToEdit);
+					String subjPrevCon = "";
+					
+					while(scanSubj.hasNextLine()) {
+						String data = scanSubj.nextLine();
+						subjPrevCon += data + "\n";
+					}
+					
+					String question = "{\n"+textField.getText()+"\n";
+					String answer = textField_1.getText()+"\n";
+					String hint = textField_2.getText()+"\n}";
+					
+					FileWriter subjNewCon = new FileWriter(subjToEdit);
+					subjNewCon.write(subjPrevCon+question+answer+hint);
+					subjNewCon.close();
+				} catch(Exception er) {
+					er.printStackTrace();
+				}
+				EditCardFrame editCardFrame = new EditCardFrame(subj);
 				editCardFrame.setVisible(true);
 				dispose();
 			}

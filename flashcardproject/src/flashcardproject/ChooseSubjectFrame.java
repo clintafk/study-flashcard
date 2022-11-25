@@ -112,7 +112,6 @@ public class ChooseSubjectFrame extends JFrame {
 			subjects[i] = data;
 			i++;
 		}
-		System.out.println(3);
 		subCon.close();
 		final String[] valSubj = subjects;
 		

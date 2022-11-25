@@ -135,6 +135,13 @@ public class DeleteSubjectFrame extends JFrame {
 		cancelButton.setBorder(new LineBorder(whiteComplement, 2));
 		cancelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				try {
+					CurrentSubjectFrame currentSubjectFrame = new CurrentSubjectFrame();
+					currentSubjectFrame.setVisible(true);
+					dispose();
+				} catch(Exception er) {
+					er.printStackTrace();
+				}
 			}
 		});
 		contentPane.add(cancelButton);
