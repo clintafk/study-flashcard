@@ -83,7 +83,7 @@ public class PlayFrame extends JFrame {
 		challengeModeButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					ChooseSubjectFrame chooseSubject = new ChooseSubjectFrame();
+					ChallengeChooseSubjectFrame chooseSubject = new ChallengeChooseSubjectFrame();
 					chooseSubject.setVisible(true);
 					dispose();
 				} catch(Exception er) {

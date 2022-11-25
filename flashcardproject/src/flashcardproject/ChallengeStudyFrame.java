@@ -16,7 +16,7 @@ import javax.swing.JProgressBar;
 import java.awt.Font;
 import javax.swing.border.LineBorder;
 
-public class StudyFrame extends JFrame {
+public class ChallengeStudyFrame extends JFrame {
 
 	private JPanel contentPane;
 
@@ -27,7 +27,7 @@ public class StudyFrame extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					StudyFrame frame = new StudyFrame(null, 0);
+					ChallengeStudyFrame frame = new ChallengeStudyFrame(null, 0);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -39,7 +39,7 @@ public class StudyFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public StudyFrame(String subj, int item) {
+	public ChallengeStudyFrame(String subj, int item) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		setSize(800, 600);
@@ -116,7 +116,7 @@ public class StudyFrame extends JFrame {
 		final int forMax = max;
 		flipCard.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AnswerFrame answerFrame = new AnswerFrame(subj, item, forMax);
+				ChallengeAnswerFrame answerFrame = new ChallengeAnswerFrame(subj, item, forMax);
 				answerFrame.setVisible(true);
 				dispose();
 			}
@@ -206,5 +206,10 @@ public class StudyFrame extends JFrame {
 		});
 		backButton.setBounds(6, 6, 117, 29);
 		contentPane.add(backButton);
+		
+		JLabel timerLabel = new JLabel("15:00");
+		timerLabel.setFont(new Font("Inter", Font.PLAIN, 32));
+		timerLabel.setBounds(690, 6, 89, 44);
+		contentPane.add(timerLabel);
 	}
 }

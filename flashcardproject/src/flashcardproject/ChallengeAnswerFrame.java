@@ -16,7 +16,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.border.LineBorder;
 
-public class AnswerFrame extends JFrame {
+public class ChallengeAnswerFrame extends JFrame {
 	private JPanel contentPane;
 	/**
 	 * Launch the application.
@@ -25,7 +25,7 @@ public class AnswerFrame extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AnswerFrame frame = new AnswerFrame(null, 0, 0);
+					ChallengeAnswerFrame frame = new ChallengeAnswerFrame(null, 0, 0);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -37,7 +37,7 @@ public class AnswerFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AnswerFrame(String subj, int item, int max) {
+	public ChallengeAnswerFrame(String subj, int item, int max) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		setSize(800, 600);
@@ -67,11 +67,11 @@ public class AnswerFrame extends JFrame {
 		nextCardButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(stat != limit) {
-					StudyFrame studyFrame = new StudyFrame(subj, stat);
+					ChallengeStudyFrame studyFrame = new ChallengeStudyFrame(subj, stat);
 					studyFrame.setVisible(true);
 					dispose();
 				} else {
-					FinishDeckFrame finishDeckFrame = new FinishDeckFrame(1);
+					FinishDeckFrame finishDeckFrame = new FinishDeckFrame(2);
 					finishDeckFrame.setVisible(true);
 					dispose();
 				}
@@ -158,6 +158,12 @@ public class AnswerFrame extends JFrame {
 		
 		progressLabel.setText(deckProgressBar.getValue() + " / " +  deckProgressBar.getMaximum());
 		contentPane.add(progressLabel);
+		
+		JLabel lblNewLabel = new JLabel("14:56");
+		lblNewLabel.setFont(new Font("Inter", Font.PLAIN, 32));
+		lblNewLabel.setBounds(690, 6, 89, 44);
+		contentPane.add(lblNewLabel);
+		
 	}
 
 }

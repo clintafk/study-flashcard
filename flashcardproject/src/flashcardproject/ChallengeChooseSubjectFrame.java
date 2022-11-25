@@ -26,7 +26,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-public class ChooseSubjectFrame extends JFrame {
+public class ChallengeChooseSubjectFrame extends JFrame {
 
 	private JPanel contentPane;
 	public String selected;
@@ -38,7 +38,7 @@ public class ChooseSubjectFrame extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ChooseSubjectFrame frame = new ChooseSubjectFrame();
+					ChallengeChooseSubjectFrame frame = new ChallengeChooseSubjectFrame();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -50,7 +50,7 @@ public class ChooseSubjectFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ChooseSubjectFrame() throws IOException, FileNotFoundException{
+	public ChallengeChooseSubjectFrame() throws IOException, FileNotFoundException{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		setSize(800, 600);
@@ -159,7 +159,7 @@ public class ChooseSubjectFrame extends JFrame {
 		nextButton.setBorder(new LineBorder(green, 2));
 		nextButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				StudyFrame studyFrame = new StudyFrame(selected, 0);
+				ChallengeStudyFrame studyFrame = new ChallengeStudyFrame(selected, 0);
 				studyFrame.setVisible(true);
 				dispose();
 			}

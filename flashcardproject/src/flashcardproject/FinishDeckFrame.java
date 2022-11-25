@@ -26,7 +26,7 @@ public class FinishDeckFrame extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					FinishDeckFrame frame = new FinishDeckFrame();
+					FinishDeckFrame frame = new FinishDeckFrame(0);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -38,7 +38,7 @@ public class FinishDeckFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public FinishDeckFrame() {
+	public FinishDeckFrame(int id) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		setSize(800, 600);
@@ -74,12 +74,22 @@ public class FinishDeckFrame extends JFrame {
 		nextButton.setFocusable(false);
 		nextButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
-					ChooseSubjectFrame chooseSubjectFrame = new ChooseSubjectFrame();
-					chooseSubjectFrame.setVisible(true);
-					dispose();
-				} catch(Exception er) {
-					er.printStackTrace();
+				if(id == 1) {
+					try {
+						ChooseSubjectFrame chooseSubjectFrame = new ChooseSubjectFrame();
+						chooseSubjectFrame.setVisible(true);
+						dispose();
+					} catch(Exception er) {
+						er.printStackTrace();
+					}
+				} else if(id == 2) {
+					try {
+						ChallengeChooseSubjectFrame chooseSubjectFrame = new ChallengeChooseSubjectFrame();
+						chooseSubjectFrame.setVisible(true);
+						dispose();
+					} catch(Exception er) {
+						er.printStackTrace();
+					}
 				}
 			}
 		});
