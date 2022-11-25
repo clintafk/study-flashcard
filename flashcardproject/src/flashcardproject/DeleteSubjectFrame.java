@@ -123,5 +123,20 @@ public class DeleteSubjectFrame extends JFrame {
 		});
 		confirmDeleteButton.setBounds(263, 385, 313, 51);
 		contentPane.add(confirmDeleteButton);
+		
+		Color white = Color.decode("#f5f5f5");
+		Color whiteComplement = Color.decode("#333333");
+		JButton cancelButton = new JButton("Cancel");
+		cancelButton.setBounds(263, 448, 313, 51);
+		cancelButton.setFont(new Font("Inter", Font.PLAIN, 24));
+		cancelButton.setOpaque(true);
+		cancelButton.setBackground(white);
+		cancelButton.setFocusable(false);
+		cancelButton.setBorder(new LineBorder(whiteComplement, 2));
+		cancelButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		contentPane.add(cancelButton);
 	}
 }
