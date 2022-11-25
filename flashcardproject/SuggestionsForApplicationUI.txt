@@ -4,3 +4,5 @@ FOR EDIT CARD DETAILS:
 *Need delete button
 FOR DELETE SUBJECT FRAME:
 *Need cancel button
+
+One more frame for confirm or cancel deletion of all subjects
