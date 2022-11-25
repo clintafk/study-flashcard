@@ -138,5 +138,7 @@ public class DeleteSubjectFrame extends JFrame {
 			}
 		});
 		contentPane.add(cancelButton);
+		
+	
 	}
 }
