@@ -9,6 +9,8 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.util.Scanner;
 import java.awt.event.ActionEvent;
 import javax.swing.JProgressBar;
 import java.awt.Font;
@@ -25,7 +27,7 @@ public class StudyFrame extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					StudyFrame frame = new StudyFrame();
+					StudyFrame frame = new StudyFrame(null, 0);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -37,7 +39,7 @@ public class StudyFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public StudyFrame() {
+	public StudyFrame(String subj, int item) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		setSize(800, 600);
@@ -56,6 +58,52 @@ public class StudyFrame extends JFrame {
 		contentPane.add(flashcardPanel);
 		flashcardPanel.setLayout(null);
 		
+
+		Scanner theRead;
+        String questionAndAnswer = "";
+        int numOfQuestion = 0;
+        
+        try {
+             File myObj = new File("./Subjects/"+subj+".txt");
+             theRead = new Scanner(myObj);
+             while(theRead.hasNextLine()) {
+                 String data = theRead.nextLine();
+                 questionAndAnswer += (data + "\n");
+                 if(data.equals("{"))
+                	 numOfQuestion++;
+             }
+             theRead.close();
+        } catch(Exception e) {
+            System.out.println("An error occured.");
+            e.printStackTrace();
+        }
+        int max = 0;
+        
+		String[] theQuestions = new String[numOfQuestion];
+    	for(int i = 0; i<theQuestions.length; i++)
+    		theQuestions[i] = "";
+    	
+    	boolean scanQuestion = false;
+    	char[] theSetCharred = questionAndAnswer.toCharArray();
+    	int index = 0;
+    	
+    	for(int i = 0; i<theSetCharred.length; i++) {
+    		if(theSetCharred[i] == '{') {
+    			scanQuestion = true;
+    			i++;
+    			max++;
+    			continue;
+    		}
+    		else if(theSetCharred[i] == '\n' && scanQuestion) {
+    			scanQuestion = false;
+    			index++;
+    		}
+    		else if(scanQuestion){
+    			theQuestions[index] += theSetCharred[i];
+    		}
+    	}
+    	
+		
 		Color lightG = Color.decode("#D5E8D4");
 		Color green = Color.decode("#82b366");
 		JButton flipCard = new JButton("FLIP");
@@ -64,9 +112,11 @@ public class StudyFrame extends JFrame {
 		flipCard.setFocusable(false);
 		flipCard.setBackground(lightG);
 		flipCard.setBorder(new LineBorder(green, 2));
+		
+		final int forMax = max;
 		flipCard.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AnswerFrame answerFrame = new AnswerFrame();
+				AnswerFrame answerFrame = new AnswerFrame(subj, item, forMax);
 				answerFrame.setVisible(true);
 				dispose();
 			}
@@ -77,13 +127,46 @@ public class StudyFrame extends JFrame {
 		JLabel questionLabel = new JLabel("Question: ");
 		questionLabel.setForeground(Color.BLACK);
 		questionLabel.setFont(new Font("Inter", Font.PLAIN, 13));
-		questionLabel.setBounds(148, 90, 89, 16);
+		questionLabel.setBounds(148, 90, 500, 16);
+		
+    	questionLabel.setText(theQuestions[item]);
+		
 		contentPane.add(questionLabel);
 		
-		JLabel hintLabel = new JLabel("HINT: ");
+		JLabel hintLabel = new JLabel();
 		hintLabel.setForeground(Color.BLACK);
 		hintLabel.setFont(new Font("Inter", Font.PLAIN, 13));
-		hintLabel.setBounds(329, 480, 61, 16);
+		hintLabel.setBounds(329, 480, 500, 16);
+		
+		String[] theHints = new String[numOfQuestion];
+    	for(int i = 0; i<theHints.length; i++)
+    		theHints[i] = "";
+    	
+    	boolean scanHint = false;
+    	char[] theSetCharredHint = questionAndAnswer.toCharArray();
+    	int indexHint = 0;
+    	int numOfNextLine = 0;
+    	
+    	for(int i = 0; i<theSetCharredHint.length; i++) {
+    		if(theSetCharredHint[i] == '{') {
+    			scanHint = true;
+    			continue;
+    		}
+    		else if(theSetCharredHint[i] == '\n') {
+    			numOfNextLine++;
+    			continue;
+    		}
+    		else if(theSetCharredHint[i] == '}') {
+    			scanHint = false;
+    			numOfNextLine = 0;
+    			i++;
+    			indexHint++;
+    		}
+    		else if(scanHint && numOfNextLine == 3) {
+    			theHints[indexHint] += theSetCharredHint[i];
+    		}
+    	}
+    	hintLabel.setText("HINT: "+theHints[item]);
 		contentPane.add(hintLabel);
 		
 		JLabel deckNameLabel = new JLabel("Deck Name");
@@ -101,8 +184,8 @@ public class StudyFrame extends JFrame {
 		JProgressBar deckProgressBar = new JProgressBar();
 		deckProgressBar.setBounds(6, 517, 871, 20);
 		contentPane.add(deckProgressBar);
-		deckProgressBar.setMaximum(10);
-		deckProgressBar.setValue(5);
+		deckProgressBar.setMaximum(max);
+		deckProgressBar.setValue(item+1);
 		progressLabel.setText(deckProgressBar.getValue() + " / " +  deckProgressBar.getMaximum());
 		
 		Color red = Color.decode("#f8cecc");

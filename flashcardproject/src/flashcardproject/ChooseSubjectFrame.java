@@ -23,10 +23,13 @@ import javax.swing.JScrollPane;
 import javax.swing.ListCellRenderer;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 public class ChooseSubjectFrame extends JFrame {
 
 	private JPanel contentPane;
+	public String selected;
 
 	/**
 	 * Launch the application.
@@ -125,6 +128,16 @@ public class ChooseSubjectFrame extends JFrame {
 				return values[index];
 			}
 		});
+		list.addListSelectionListener(new ListSelectionListener() {
+			public void valueChanged(ListSelectionEvent arg0) {
+				if (!arg0.getValueIsAdjusting()) {
+					selected = list.getSelectedValue().toString();
+				}
+			}
+		});
+		try {
+			list.setSelectionInterval(0, 0);
+		} catch(NullPointerException er) {}
 		
 		DefaultListCellRenderer renderer =  (DefaultListCellRenderer)list.getCellRenderer();  
 		renderer.setHorizontalAlignment(JLabel.CENTER);
@@ -146,7 +159,7 @@ public class ChooseSubjectFrame extends JFrame {
 		nextButton.setBorder(new LineBorder(green, 2));
 		nextButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				StudyFrame studyFrame = new StudyFrame();
+				StudyFrame studyFrame = new StudyFrame(selected, 0);
 				studyFrame.setVisible(true);
 				dispose();
 			}

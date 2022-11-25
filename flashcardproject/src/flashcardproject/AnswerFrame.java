@@ -5,6 +5,9 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.util.Scanner;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -22,7 +25,7 @@ public class AnswerFrame extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AnswerFrame frame = new AnswerFrame();
+					AnswerFrame frame = new AnswerFrame(null, 0, 0);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -34,7 +37,7 @@ public class AnswerFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AnswerFrame() {
+	public AnswerFrame(String subj, int item, int max) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		setSize(800, 600);
@@ -60,19 +63,76 @@ public class AnswerFrame extends JFrame {
 		nextCardButton.setBackground(lightG);
 		nextCardButton.setFocusable(false);
 		nextCardButton.setBorder(new LineBorder(green, 2));
+		final int stat = item+1, limit = max;
 		nextCardButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				FinishDeckFrame finishDeckFrame = new FinishDeckFrame();
-				finishDeckFrame.setVisible(true);
-				dispose();
+				if(stat != limit) {
+					StudyFrame studyFrame = new StudyFrame(subj, stat);
+					studyFrame.setVisible(true);
+					dispose();
+				} else {
+					FinishDeckFrame finishDeckFrame = new FinishDeckFrame();
+					finishDeckFrame.setVisible(true);
+					dispose();
+				}
 			}
 		});
 		nextCardButton.setBounds(155, 269, 193, 55);
 		flashcardPanel.add(nextCardButton);
 		
-		JLabel answerLabel_1 = new JLabel("Answer");
+		JLabel answerLabel_1 = new JLabel();
 		answerLabel_1.setFont(new Font("Inter", Font.PLAIN, 13));
-		answerLabel_1.setBounds(219, 160, 61, 16);
+		answerLabel_1.setBounds(219, 160, 500, 16);
+		
+		Scanner theRead;
+        String questionAndAnswer = "";
+        int numOfQuestion = 0;
+        
+        try {
+             File myObj = new File("./Subjects/"+subj+".txt");
+             theRead = new Scanner(myObj);
+             while(theRead.hasNextLine()) {
+                 String data = theRead.nextLine();
+                 questionAndAnswer += (data + "\n");
+                 if(data.equals("{"))
+                	 numOfQuestion++;
+             }
+             theRead.close();
+        } catch(Exception e) {
+            System.out.println("An error occured.");
+            e.printStackTrace();
+        }
+		
+		String[] theAnswers = new String[numOfQuestion];
+    	for(int i = 0; i<theAnswers.length; i++)
+    		theAnswers[i] = "";
+    	
+    	boolean scanAns = false;
+    	char[] theSetCharredAns = questionAndAnswer.toCharArray();
+    	int indexAns = 0;
+    	int numOfNextLine = 0;
+    	
+    	for(int i = 0; i<theSetCharredAns.length; i++) {
+    		if(theSetCharredAns[i] == '{') {
+    			scanAns = true;
+    			continue;
+    		}
+    		else if(theSetCharredAns[i] == '\n') {
+    			numOfNextLine++;
+    			continue;
+    		}
+    		else if(theSetCharredAns[i] == '}') {
+    			scanAns = false;
+    			numOfNextLine = 0;
+    			i++;
+    			indexAns++;
+    		}
+    		else if(scanAns && numOfNextLine == 2) {
+    			theAnswers[indexAns] += theSetCharredAns[i];
+    		}
+    	}
+    	answerLabel_1.setText(theAnswers[item]);
+		
 		flashcardPanel.add(answerLabel_1);
 
 		setContentPane(contentPane);
@@ -87,8 +147,8 @@ public class AnswerFrame extends JFrame {
 		deckProgressBar.setFont(new Font("Inter", Font.PLAIN, 13));
 		deckProgressBar.setBounds(6, 517, 871, 20);
 		contentPane.add(deckProgressBar);
-		deckProgressBar.setMaximum(10);
-		deckProgressBar.setValue(5);
+		deckProgressBar.setMaximum(max);
+		deckProgressBar.setValue(item+1);
 		
 		JLabel progressLabel = new JLabel("");
 		progressLabel.setForeground(Color.BLACK);
