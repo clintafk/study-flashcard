@@ -102,11 +102,6 @@ public class EditCardFrame extends JFrame {
 		});
 		contentPane.add(addCardButton);
 		
-		JLabel subjectLabel = new JLabel(subj);
-		subjectLabel.setFont(new Font("Inter", Font.PLAIN, 36));
-		subjectLabel.setBounds(313, 28, 231, 44);
-		contentPane.add(subjectLabel);
-		
 		Color yellow = Color.decode("#fff2cc");
 		Color yellowComplement = Color.decode("#d6b656");
 		JButton editCardButton = new JButton("Edit Card");
