@@ -48,7 +48,7 @@ public class CurrentSubjectFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public CurrentSubjectFrame() throws IOException, FileNotFoundException{
+	public CurrentSubjectFrame() throws IOException, FileNotFoundException {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		setSize(800, 600);
@@ -77,13 +77,12 @@ public class CurrentSubjectFrame extends JFrame {
 		});
 		backButton.setBounds(6, 6, 117, 29);
 		contentPane.add(backButton);
-		
+
 		JLabel currentSubjectsLabel = new JLabel("Current Subjects");
 		currentSubjectsLabel.setFont(new Font("Inter", Font.PLAIN, 36));
 		currentSubjectsLabel.setBounds(279, 48, 301, 35);
 		contentPane.add(currentSubjectsLabel);
-		
-		
+
 		JPanel panel = new JPanel();
 		panel.setBorder(null);
 		panel.setBackground(Color.WHITE);
@@ -97,35 +96,37 @@ public class CurrentSubjectFrame extends JFrame {
 		list.setCellRenderer(getRenderer());
 		list.setFont(new Font("Inter", Font.PLAIN, 36));
 		String[] subjects;
-		
+
 		File subj = new File("Subjects.txt");
 		Scanner subSc = new Scanner(subj);
 		int range = 1;
-		while(subSc.hasNextLine()) {
+		while (subSc.hasNextLine()) {
 			subSc.nextLine();
 			range++;
 		}
 		subSc.close();
-		
+
 		Scanner subCon = new Scanner(subj);
-			
-		subjects = new String[range-1];
-		
+
+		subjects = new String[range - 1];
+
 		int i = 0;
-		while(subCon.hasNextLine()) {
+		while (subCon.hasNextLine()) {
 			String data = subCon.nextLine();
 			subjects[i] = data;
 			i++;
 		}
 		subCon.close();
 		final String[] valSubj = subjects;
-		
+
 		list.setModel(new AbstractListModel<String>() {
 			private static final long serialVersionUID = 1L;
 			String[] values = valSubj;
+
 			public int getSize() {
 				return values.length;
 			}
+
 			public String getElementAt(int index) {
 				return values[index];
 			}
@@ -139,17 +140,17 @@ public class CurrentSubjectFrame extends JFrame {
 		});
 		try {
 			list.setSelectionInterval(0, 0);
-		} catch(NullPointerException er) {}
-		
-		DefaultListCellRenderer renderer =  (DefaultListCellRenderer)list.getCellRenderer();  
+		} catch (NullPointerException er) {
+		}
+
+		DefaultListCellRenderer renderer = (DefaultListCellRenderer) list.getCellRenderer();
 		renderer.setHorizontalAlignment(JLabel.CENTER);
-		
-		
+
 		JScrollPane sp = new JScrollPane();
 		sp.setViewportView(list);
 		sp.setBounds(6, 6, 593, 460);
 		panel.add(sp);
-		
+
 		Color lightG = Color.decode("#D5E8D4");
 		Color green = Color.decode("#82b366");
 		JButton nextButton = new JButton("Next");
@@ -168,19 +169,21 @@ public class CurrentSubjectFrame extends JFrame {
 		});
 		nextButton.setBounds(677, 6, 117, 29);
 		contentPane.add(nextButton);
-		
+
 	}
+
 	private ListCellRenderer<? super String> getRenderer() {
-        return new DefaultListCellRenderer(){
-            private static final long serialVersionUID = 1L;
+		return new DefaultListCellRenderer() {
+			private static final long serialVersionUID = 1L;
+
 			@Override
-            public Component getListCellRendererComponent(JList<?> list,
-                    Object value, int index, boolean isSelected,
-                    boolean cellHasFocus) {
-                JLabel listCellRendererComponent = (JLabel) super.getListCellRendererComponent(list, value, index, isSelected,cellHasFocus);
-                listCellRendererComponent.setBorder(BorderFactory.createLineBorder(Color.black));
-                return listCellRendererComponent;
-            }
-        };
-    }
+			public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected,
+					boolean cellHasFocus) {
+				JLabel listCellRendererComponent = (JLabel) super.getListCellRendererComponent(list, value, index,
+						isSelected, cellHasFocus);
+				listCellRendererComponent.setBorder(BorderFactory.createLineBorder(Color.black));
+				return listCellRendererComponent;
+			}
+		};
+	}
 }

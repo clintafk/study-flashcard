@@ -1,4 +1,5 @@
 package flashcardproject;
+
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -28,6 +29,7 @@ public class AddCardFrame extends JFrame {
 	private JTextField textField_2;
 	private JLabel lblHint;
 	private JButton backButton;
+
 	/**
 	 * Launch the application.
 	 */
@@ -51,7 +53,7 @@ public class AddCardFrame extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		setSize(800, 600);
-		
+
 		setResizable(false);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
@@ -59,7 +61,7 @@ public class AddCardFrame extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		Color grayBorder = Color.decode("#333333");
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(245, 245, 245));
@@ -67,7 +69,7 @@ public class AddCardFrame extends JFrame {
 		panel.setBorder(new LineBorder(grayBorder, 2));
 		panel.setBounds(101, 99, 604, 104);
 		contentPane.add(panel);
-		
+
 		textField = new JTextField(10);
 		textField.setHorizontalAlignment(SwingConstants.CENTER);
 		textField.setFont(new Font("Inter", Font.PLAIN, 20));
@@ -75,12 +77,12 @@ public class AddCardFrame extends JFrame {
 		textField.setBackground(new Color(245, 245, 245));
 		textField.setBounds(6, 26, 592, 72);
 		panel.add(textField);
-		
+
 		lblNewLabel = new JLabel("question");
 		lblNewLabel.setFont(new Font("Inter", Font.PLAIN, 16));
 		lblNewLabel.setBounds(375, 215, 99, 16);
 		contentPane.add(lblNewLabel);
-		
+
 		Color lightG = Color.decode("#D5E8D4");
 		Color green = Color.decode("#82b366");
 		panel_1 = new JPanel();
@@ -89,7 +91,7 @@ public class AddCardFrame extends JFrame {
 		panel_1.setBorder(new LineBorder(green, 2));
 		panel_1.setBounds(101, 243, 604, 104);
 		contentPane.add(panel_1);
-		
+
 		textField_1 = new JTextField(10);
 		textField_1.setHorizontalAlignment(SwingConstants.CENTER);
 		textField_1.setFont(new Font("Inter", Font.PLAIN, 20));
@@ -97,12 +99,12 @@ public class AddCardFrame extends JFrame {
 		textField_1.setBackground(lightG);
 		textField_1.setBounds(6, 22, 592, 72);
 		panel_1.add(textField_1);
-		
+
 		lblAnswer = new JLabel("answer");
 		lblAnswer.setFont(new Font("Inter", Font.PLAIN, 16));
 		lblAnswer.setBounds(375, 359, 61, 16);
 		contentPane.add(lblAnswer);
-		
+
 		Color orange = Color.decode("#fad7ac");
 		Color orangeComplement = Color.decode("#b46504");
 		panel_2 = new JPanel();
@@ -111,7 +113,7 @@ public class AddCardFrame extends JFrame {
 		panel_2.setBorder(new LineBorder(orangeComplement, 2));
 		panel_2.setBounds(159, 387, 498, 104);
 		contentPane.add(panel_2);
-		
+
 		textField_2 = new JTextField(10);
 		textField_2.setHorizontalAlignment(SwingConstants.CENTER);
 		textField_2.setFont(new Font("Inter", Font.PLAIN, 20));
@@ -119,12 +121,12 @@ public class AddCardFrame extends JFrame {
 		textField_2.setBackground(orange);
 		textField_2.setBounds(6, 26, 486, 72);
 		panel_2.add(textField_2);
-		
+
 		lblHint = new JLabel("hint");
 		lblHint.setFont(new Font("Inter", Font.PLAIN, 16));
 		lblHint.setBounds(387, 503, 61, 16);
 		contentPane.add(lblHint);
-		
+
 		Color red = Color.decode("#f8cecc");
 		Color redComplement = Color.decode("#b85450");
 		backButton = new JButton("Back");
@@ -142,7 +144,7 @@ public class AddCardFrame extends JFrame {
 		});
 		backButton.setBounds(6, 6, 117, 29);
 		contentPane.add(backButton);
-		
+
 		JButton saveButton = new JButton("Save");
 		saveButton.setBounds(677, 6, 117, 29);
 		saveButton.setFont(new Font("Inter", Font.PLAIN, 24));
@@ -153,23 +155,23 @@ public class AddCardFrame extends JFrame {
 		saveButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					File subjToEdit = new File("./Subjects/"+subj+".txt");
+					File subjToEdit = new File("./Subjects/" + subj + ".txt");
 					Scanner scanSubj = new Scanner(subjToEdit);
 					String subjPrevCon = "";
-					
-					while(scanSubj.hasNextLine()) {
+
+					while (scanSubj.hasNextLine()) {
 						String data = scanSubj.nextLine();
 						subjPrevCon += data + "\n";
 					}
-					
-					String question = "{\n"+textField.getText()+"\n";
-					String answer = textField_1.getText()+"\n";
-					String hint = textField_2.getText()+"\n}";
-					
+
+					String question = "{\n" + textField.getText() + "\n";
+					String answer = textField_1.getText() + "\n";
+					String hint = textField_2.getText() + "\n}";
+
 					FileWriter subjNewCon = new FileWriter(subjToEdit);
-					subjNewCon.write(subjPrevCon+question+answer+hint);
+					subjNewCon.write(subjPrevCon + question + answer + hint);
 					subjNewCon.close();
-				} catch(Exception er) {
+				} catch (Exception er) {
 					er.printStackTrace();
 				}
 				EditCardFrame editCardFrame = new EditCardFrame(subj);

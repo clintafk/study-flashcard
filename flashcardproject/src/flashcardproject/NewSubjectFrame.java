@@ -62,13 +62,13 @@ public class NewSubjectFrame extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		JPanel panel = new JPanel();
 		panel.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panel.setBounds(120, 168, 547, 151);
 		contentPane.add(panel);
 		panel.setLayout(null);
-		
+
 		textField = new JTextField(20);
 		textField.setHorizontalAlignment(SwingConstants.CENTER);
 		textField.setFont(new Font("Inter", Font.PLAIN, 32));
@@ -77,13 +77,12 @@ public class NewSubjectFrame extends JFrame {
 		textField.setBounds(17, 39, 513, 72);
 		panel.add(textField);
 		textField.setColumns(10);
-		
-		
+
 		textFieldLabel = new JLabel("Write the subject's name (MAX: 20 Characters)");
 		textFieldLabel.setFont(new Font("Inter", Font.PLAIN, 13));
 		textFieldLabel.setBounds(256, 331, 463, 16);
 		contentPane.add(textFieldLabel);
-		
+
 		Color lightG = Color.decode("#D5E8D4");
 		Color green = Color.decode("#82b366");
 		JButton nextButton = new JButton("Confirm");
@@ -96,44 +95,42 @@ public class NewSubjectFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String fileName = textField.getText();
 
-		        String theFile = fileName + ".txt";
-		        
-		        
-		        try {
-		            File myObj = new File("Subjects/"+theFile);
-		            
-		            
-		            if (myObj.createNewFile()) {
-		                System.out.println("Subject created");
-		            } else {
-		            	System.out.println("Subject already exists. Please enter another subject.");
-		            	return;
-		            }
-		        } catch (IOException er) {
-		            er.printStackTrace();
-		        }
-		        
-		        try {
-		        	File indexFile = new File("Subjects.txt");
-		        	indexFile.createNewFile();
-		        	Scanner newFileContent = new Scanner(indexFile);
-		        	String indexContent = "";
-		        	
-		        	while(newFileContent.hasNextLine()) {
-		        		String data = newFileContent.nextLine();
-		        		indexContent += (data + "\n");
-		        	}
-		        	
-		        	newFileContent.close();
-		        	
-		        	FileWriter indexInp = new FileWriter("Subjects.txt");        	
-		        	indexInp.write(indexContent+fileName);
-		        	indexInp.close();
-		        } catch (IOException er) {
-		        	System.out.println("An error occured.");
-		        	er.printStackTrace();
-		        }
-		        
+				String theFile = fileName + ".txt";
+
+				try {
+					File myObj = new File("Subjects/" + theFile);
+
+					if (myObj.createNewFile()) {
+						System.out.println("Subject created");
+					} else {
+						System.out.println("Subject already exists. Please enter another subject.");
+						return;
+					}
+				} catch (IOException er) {
+					er.printStackTrace();
+				}
+
+				try {
+					File indexFile = new File("Subjects.txt");
+					indexFile.createNewFile();
+					Scanner newFileContent = new Scanner(indexFile);
+					String indexContent = "";
+
+					while (newFileContent.hasNextLine()) {
+						String data = newFileContent.nextLine();
+						indexContent += (data + "\n");
+					}
+
+					newFileContent.close();
+
+					FileWriter indexInp = new FileWriter("Subjects.txt");
+					indexInp.write(indexContent + fileName);
+					indexInp.close();
+				} catch (IOException er) {
+					System.out.println("An error occured.");
+					er.printStackTrace();
+				}
+
 				CurrentSubjectFrame currentSubjectFrame;
 				try {
 					currentSubjectFrame = new CurrentSubjectFrame();
@@ -146,7 +143,7 @@ public class NewSubjectFrame extends JFrame {
 		});
 		nextButton.setBounds(266, 371, 273, 48);
 		contentPane.add(nextButton);
-		
+
 		Color red = Color.decode("#f8cecc");
 		Color redComplement = Color.decode("#b85450");
 		JButton backButton = new JButton("Back");
@@ -164,22 +161,21 @@ public class NewSubjectFrame extends JFrame {
 		});
 		backButton.setBounds(6, 6, 117, 29);
 		contentPane.add(backButton);
-		
+
 		JLabel newSubjectLabel = new JLabel("New Subject");
 		newSubjectLabel.setFont(new Font("Inter", Font.PLAIN, 36));
 		newSubjectLabel.setBounds(287, 52, 231, 44);
 		contentPane.add(newSubjectLabel);
-		
-		
+
 	}
-	
+
 	void drawLines(Graphics g) {
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.drawLine(150, 308, 625, 308);
-    }
- 
-    public void paint(Graphics g) {
-        super.paint(g);
-        drawLines(g);
-    }
+		Graphics2D g2d = (Graphics2D) g;
+		g2d.drawLine(150, 308, 625, 308);
+	}
+
+	public void paint(Graphics g) {
+		super.paint(g);
+		drawLines(g);
+	}
 }

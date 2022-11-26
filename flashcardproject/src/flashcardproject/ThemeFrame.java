@@ -46,7 +46,7 @@ public class ThemeFrame extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		Color red = Color.decode("#f8cecc");
 		Color redComplement = Color.decode("#b85450");
 		JButton backButton = new JButton("Back");
@@ -64,7 +64,7 @@ public class ThemeFrame extends JFrame {
 		});
 		backButton.setBounds(6, 6, 117, 29);
 		contentPane.add(backButton);
-		
+
 		Color yellow = Color.decode("#fff2cc");
 		Color yellowComplement = Color.decode("#d6b656");
 		JButton lightThemeButton = new JButton("Light Theme");
@@ -80,7 +80,7 @@ public class ThemeFrame extends JFrame {
 		lightThemeButton.setFont(new Font("Dialog", Font.PLAIN, 32));
 		lightThemeButton.setBounds(213, 148, 393, 84);
 		contentPane.add(lightThemeButton);
-		
+
 		Color darkBlue = Color.decode("#b1ddf0");
 		Color darkBlueComplement = Color.decode("#10739e");
 		JButton darkThemeButton = new JButton("Dark Theme");
@@ -91,12 +91,12 @@ public class ThemeFrame extends JFrame {
 		darkThemeButton.setBorder(new LineBorder(darkBlueComplement, 2));
 		darkThemeButton.setBounds(213, 244, 393, 84);
 		contentPane.add(darkThemeButton);
-		
+
 		JLabel themeLabel = new JLabel("Themes");
 		themeLabel.setFont(new Font("Inter", Font.PLAIN, 36));
 		themeLabel.setBounds(327, 54, 231, 44);
 		contentPane.add(themeLabel);
-		
+
 		Color lightG = Color.decode("#D5E8D4");
 		Color green = Color.decode("#82b366");
 		JButton saveButton = new JButton("Save");

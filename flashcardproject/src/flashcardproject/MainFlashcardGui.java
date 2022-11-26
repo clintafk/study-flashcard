@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.util.Scanner;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import javax.swing.border.LineBorder;
@@ -38,10 +39,34 @@ public class MainFlashcardGui extends JFrame {
 	 */
 	public MainFlashcardGui() {
 		try {
-		File indexFile = new File("Subjects.txt");
-		indexFile.createNewFile();
-		File subjectFolder = new File("./Subjects");
-	    subjectFolder.mkdir();
+			File timeSet = new File("SetTime.txt");
+			timeSet.createNewFile();
+			Scanner timeScan = new Scanner(timeSet);
+
+			String data = timeScan.nextLine();
+			timeScan.close();
+			String theMin = "", theSec = "";
+			boolean forSec = false;
+
+			for (char i : data.toCharArray()) {
+				if (i == ':')
+					forSec = true;
+				else if (forSec)
+					theSec += i;
+				else if (!forSec)
+					theMin += i;
+			}
+
+			ChallengeTimerFrame.minLeft = ChallengeTimerFrame.min = Integer.parseInt(theMin);
+			ChallengeTimerFrame.secLeft = ChallengeTimerFrame.sec = Integer.parseInt(theSec);
+		} catch (Exception er) {
+			er.printStackTrace();
+		}
+		try {
+			File indexFile = new File("Subjects.txt");
+			indexFile.createNewFile();
+			File subjectFolder = new File("./Subjects");
+			subjectFolder.mkdir();
 		} catch (IOException er) {
 			er.printStackTrace();
 		}
@@ -53,7 +78,7 @@ public class MainFlashcardGui extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		Color lightG = Color.decode("#D5E8D4");
 		Color green = Color.decode("#82b366");
 		JButton playButton = new JButton("PLAY");
@@ -71,17 +96,17 @@ public class MainFlashcardGui extends JFrame {
 		});
 		playButton.setBounds(265, 93, 286, 88);
 		contentPane.add(playButton);
-		
+
 		Color yellow = Color.decode("#fff2cc");
 		Color yellowComplement = Color.decode("#d6b656");
-		
+
 		JButton editButton = new JButton("EDIT");
 		editButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				EditFrame addFrame = new EditFrame();
 				addFrame.setVisible(true);
 				dispose();
-				
+
 			}
 		});
 		editButton.setOpaque(true);
@@ -91,7 +116,7 @@ public class MainFlashcardGui extends JFrame {
 		editButton.setBounds(302, 193, 212, 88);
 		editButton.setFocusable(false);
 		contentPane.add(editButton);
-		
+
 		Color blue = Color.decode("#dae8fc");
 		Color blueComplement = Color.decode("#6c8ebf");
 		JButton optionsButton = new JButton("OPTIONS");
@@ -109,7 +134,7 @@ public class MainFlashcardGui extends JFrame {
 		optionsButton.setFocusable(false);
 		optionsButton.setBounds(302, 293, 212, 88);
 		contentPane.add(optionsButton);
-		
+
 		Color red = Color.decode("#f8cecc");
 		Color redComplement = Color.decode("#b85450");
 		JButton exitButton = new JButton("EXIT");

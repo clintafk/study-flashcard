@@ -45,7 +45,7 @@ public class OptionsFrame extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		Color blue = Color.decode("#dae8fc");
 		Color blueComplement = Color.decode("#6c8ebf");
 		JButton themesButton = new JButton("THEME");
@@ -64,7 +64,7 @@ public class OptionsFrame extends JFrame {
 		themesButton.setBounds(208, 122, 393, 84);
 		themesButton.setFont(new Font("Inter", Font.PLAIN, 32));
 		contentPane.add(themesButton);
-		
+
 		Color yellow = Color.decode("#fff2cc");
 		Color yellowComplement = Color.decode("#d6b656");
 		JButton challengeTimerButton = new JButton("CHALLENGE TIMER");
@@ -83,7 +83,7 @@ public class OptionsFrame extends JFrame {
 		challengeTimerButton.setFont(new Font("Inter", Font.PLAIN, 32));
 		challengeTimerButton.setBounds(208, 218, 393, 84);
 		contentPane.add(challengeTimerButton);
-		
+
 		Color darkRed = Color.decode("#a20025");
 		Color darkRedComplement = Color.decode("#ffffff");
 		JButton deleteAllSubjectsButton = new JButton("DELETE ALL SUBJECTS");
@@ -94,12 +94,15 @@ public class OptionsFrame extends JFrame {
 		deleteAllSubjectsButton.setBorder(new LineBorder(darkRedComplement, 2));
 		deleteAllSubjectsButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				DeleteAllSubjectsFrame deleteAllSubjectsFrame = new DeleteAllSubjectsFrame();
+				deleteAllSubjectsFrame.setVisible(true);
+				dispose();
 			}
 		});
 		deleteAllSubjectsButton.setFont(new Font("Inter", Font.PLAIN, 32));
 		deleteAllSubjectsButton.setBounds(208, 314, 393, 84);
 		contentPane.add(deleteAllSubjectsButton);
-		
+
 		Color red = Color.decode("#f8cecc");
 		Color redComplement = Color.decode("#b85450");
 		JButton backButton = new JButton("Back");

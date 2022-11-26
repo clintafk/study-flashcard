@@ -47,7 +47,7 @@ public class PlayFrame extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		Color lightG = Color.decode("#D5E8D4");
 		Color green = Color.decode("#82b366");
 		JButton normalModeButton = new JButton("Normal Mode");
@@ -63,7 +63,7 @@ public class PlayFrame extends JFrame {
 					ChooseSubjectFrame chooseSubject = new ChooseSubjectFrame();
 					chooseSubject.setVisible(true);
 					dispose();
-				} catch(Exception er) {
+				} catch (Exception er) {
 					er.printStackTrace();
 				}
 			}
@@ -71,7 +71,7 @@ public class PlayFrame extends JFrame {
 		normalModeButton.setBounds(69, 172, 305, 86);
 		normalModeButton.setFont(new Font("Inter", Font.PLAIN, 32));
 		contentPane.add(normalModeButton);
-		
+
 		Color yellow = Color.decode("#fff2cc");
 		Color yellowComplement = Color.decode("#d6b656");
 		JButton challengeModeButton = new JButton("Challenge Mode");
@@ -86,7 +86,7 @@ public class PlayFrame extends JFrame {
 					ChallengeChooseSubjectFrame chooseSubject = new ChallengeChooseSubjectFrame();
 					chooseSubject.setVisible(true);
 					dispose();
-				} catch(Exception er) {
+				} catch (Exception er) {
 					er.printStackTrace();
 				}
 			}
@@ -94,15 +94,15 @@ public class PlayFrame extends JFrame {
 		challengeModeButton.setFont(new Font("Inter", Font.PLAIN, 32));
 		challengeModeButton.setBounds(424, 172, 305, 86);
 		contentPane.add(challengeModeButton);
-		
+
 		JLabel normalModeLabel = new JLabel("No time limits with hints.");
 		normalModeLabel.setBounds(136, 270, 255, 14);
 		contentPane.add(normalModeLabel);
-		
+
 		JLabel challengeModeLabel = new JLabel("User-defined time limit without hints");
 		challengeModeLabel.setBounds(454, 270, 300, 14);
 		contentPane.add(challengeModeLabel);
-		
+
 		Color red = Color.decode("#f8cecc");
 		Color redComplement = Color.decode("#b85450");
 		JButton backButton = new JButton("Back");
@@ -116,7 +116,7 @@ public class PlayFrame extends JFrame {
 				MainFlashcardGui mainFrame = new MainFlashcardGui();
 				mainFrame.setVisible(true);
 				dispose();
-				
+
 			}
 		});
 		backButton.setBounds(6, 6, 117, 29);

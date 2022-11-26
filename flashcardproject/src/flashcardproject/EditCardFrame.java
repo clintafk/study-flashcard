@@ -27,7 +27,7 @@ import java.awt.event.ActionEvent;
 public class EditCardFrame extends JFrame {
 
 	private JPanel contentPane;
-	
+
 	/**
 	 * Launch the application.
 	 */
@@ -57,12 +57,12 @@ public class EditCardFrame extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
 		panel.setBounds(93, 84, 660, 482);
 		contentPane.add(panel);
-		
+
 		Color red = Color.decode("#f8cecc");
 		Color redComplement = Color.decode("#b85450");
 		JButton backButton = new JButton("Back");
@@ -80,12 +80,12 @@ public class EditCardFrame extends JFrame {
 				} catch (Exception er) {
 					er.printStackTrace();
 				}
-	
+
 			}
 		});
 		backButton.setBounds(6, 6, 117, 29);
 		contentPane.add(backButton);
-		
+
 		Color lightG = Color.decode("#D5E8D4");
 		Color green = Color.decode("#82b366");
 		JButton addCardButton = new JButton("+ Add Card");
@@ -103,7 +103,7 @@ public class EditCardFrame extends JFrame {
 			}
 		});
 		contentPane.add(addCardButton);
-		
+
 		Color yellow = Color.decode("#fff2cc");
 		Color yellowComplement = Color.decode("#d6b656");
 		JButton editCardButton = new JButton("Edit Card");
@@ -115,11 +115,11 @@ public class EditCardFrame extends JFrame {
 		editCardButton.setBorder(new LineBorder(yellowComplement, 2));
 		editCardButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 			}
 		});
 		contentPane.add(editCardButton);
-		
+
 		JButton deleteCardButton = new JButton("Delete Card");
 		deleteCardButton.setFont(new Font("Inter", Font.PLAIN, 15));
 		deleteCardButton.setOpaque(true);
@@ -132,101 +132,101 @@ public class EditCardFrame extends JFrame {
 			}
 		});
 		contentPane.add(deleteCardButton);
-		
+
 		JTextField subjectTextField = new JTextField();
 		subjectTextField.setEditable(false);
 		subjectTextField.setBorder(null);
 		subjectTextField.setBackground(Color.WHITE);
 		subjectTextField.setFont(new Font("Inter", Font.PLAIN, 32));
-		subjectTextField.setText("Title");
+		subjectTextField.setText(subj);
 		subjectTextField.setHorizontalAlignment(SwingConstants.CENTER);
 		subjectTextField.setBounds(247, 32, 325, 39);
 		subjectTextField.setColumns(10);
 		contentPane.add(subjectTextField);
-		
-		
+
 		JList<String> list = new JList<String>();
 		list.setBounds(6, 6, 579, 460);
 		list.setFixedCellHeight(75);
 		list.setCellRenderer(getRenderer());
 		list.setFont(new Font("MonoLisa", Font.PLAIN, 16));
-		
+
 		Scanner theRead;
-        String questionAndAnswer = "";
-        int numOfQuestion = 0;
-        
-        try {
-             File myObj = new File("./Subjects/"+subj+".txt");
-             theRead = new Scanner(myObj);
-             while(theRead.hasNextLine()) {
-                 String data = theRead.nextLine();
-                 questionAndAnswer += (data + "\n");
-                 if(data.equals("{"))
-                	 numOfQuestion++;
-             }
-             theRead.close();
-        } catch(Exception e) {
-            System.out.println("An error occured.");
-            e.printStackTrace();
-        }
-        
+		String questionAndAnswer = "";
+		int numOfQuestion = 0;
+
+		try {
+			File myObj = new File("./Subjects/" + subj + ".txt");
+			theRead = new Scanner(myObj);
+			while (theRead.hasNextLine()) {
+				String data = theRead.nextLine();
+				questionAndAnswer += (data + "\n");
+				if (data.equals("{"))
+					numOfQuestion++;
+			}
+			theRead.close();
+		} catch (Exception e) {
+			System.out.println("An error occured.");
+			e.printStackTrace();
+		}
+
 		String[] theQuestions = new String[numOfQuestion];
-    	for(int i = 0; i<theQuestions.length; i++)
-    		theQuestions[i] = "";
-    	
-    	boolean scanQuestion = false;
-    	char[] theSetCharred = questionAndAnswer.toCharArray();
-    	int index = 0;
-    	
-    	for(int i = 0; i<theSetCharred.length; i++) {
-    		if(theSetCharred[i] == '{') {
-    			scanQuestion = true;
-    			i++;
-    			continue;
-    		}
-    		else if(theSetCharred[i] == '\n' && scanQuestion) {
-    			scanQuestion = false;
-    			index++;
-    		}
-    		else if(scanQuestion){
-    			theQuestions[index] += theSetCharred[i];
-    		}
-    	}
-    	
-    	final String[] valQue = theQuestions;
-    	
+		for (int i = 0; i < theQuestions.length; i++)
+			theQuestions[i] = "";
+
+		boolean scanQuestion = false;
+		char[] theSetCharred = questionAndAnswer.toCharArray();
+		int index = 0;
+
+		for (int i = 0; i < theSetCharred.length; i++) {
+			if (theSetCharred[i] == '{') {
+				scanQuestion = true;
+				i++;
+				continue;
+			} else if (theSetCharred[i] == '\n' && scanQuestion) {
+				scanQuestion = false;
+				index++;
+			} else if (scanQuestion) {
+				theQuestions[index] += theSetCharred[i];
+			}
+		}
+
+		final String[] valQue = theQuestions;
+
 		list.setModel(new AbstractListModel<String>() {
 			private static final long serialVersionUID = 1L;
 			String[] values = valQue;
+
 			public int getSize() {
 				return values.length;
 			}
+
 			public String getElementAt(int index) {
 				return values[index];
 			}
 		});
-		DefaultListCellRenderer renderer =  (DefaultListCellRenderer)list.getCellRenderer();  
+		DefaultListCellRenderer renderer = (DefaultListCellRenderer) list.getCellRenderer();
 		renderer.setHorizontalAlignment(JLabel.CENTER);
-		
+
 		JScrollPane sp = new JScrollPane();
 		sp.setViewportView(list);
 		sp.setBounds(6, 6, 623, 460);
 		panel.add(sp);
-		
+
 	}
-	
+
 	private ListCellRenderer<? super String> getRenderer() {
-        return new DefaultListCellRenderer(){
-            private static final long serialVersionUID = 1L;
+		return new DefaultListCellRenderer() {
+			private static final long serialVersionUID = 1L;
+
 			@Override
-            public Component getListCellRendererComponent(JList<?> list,
-                    Object value, int index, boolean isSelected,
-                    boolean cellHasFocus) {
-                JLabel listCellRendererComponent = (JLabel) super.getListCellRendererComponent(list, value, index, isSelected,cellHasFocus);
-                listCellRendererComponent.setBorder(BorderFactory.createLineBorder(Color.black));
-                return listCellRendererComponent;
-            }
-        };
-    }
+			public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected,
+					boolean cellHasFocus) {
+				JLabel listCellRendererComponent = (JLabel) super.getListCellRendererComponent(list, value, index,
+						isSelected, cellHasFocus);
+				listCellRendererComponent.setBorder(BorderFactory.createLineBorder(Color.black));
+				return listCellRendererComponent;
+			}
+		};
+	}
 
 }

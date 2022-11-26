@@ -46,7 +46,7 @@ public class EditFrame extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		Color lightG = Color.decode("#D5E8D4");
 		Color green = Color.decode("#82b366");
 		JButton newSubjectButton = new JButton("New Subject");
@@ -65,7 +65,7 @@ public class EditFrame extends JFrame {
 		newSubjectButton.setFont(new Font("Inter", Font.PLAIN, 32));
 		newSubjectButton.setBounds(66, 178, 309, 86);
 		contentPane.add(newSubjectButton);
-		
+
 		Color yellow = Color.decode("#fff2cc");
 		Color yellowComplement = Color.decode("#d6b656");
 		JButton currentSubjectButton = new JButton("Current Subjects");
@@ -77,10 +77,10 @@ public class EditFrame extends JFrame {
 		currentSubjectButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-				CurrentSubjectFrame currentSubjectFrame = new CurrentSubjectFrame();
-				currentSubjectFrame.setVisible(true);
-				dispose();
-				} catch(Exception er) {
+					CurrentSubjectFrame currentSubjectFrame = new CurrentSubjectFrame();
+					currentSubjectFrame.setVisible(true);
+					dispose();
+				} catch (Exception er) {
 					er.printStackTrace();
 				}
 			}
@@ -88,17 +88,17 @@ public class EditFrame extends JFrame {
 		currentSubjectButton.setFont(new Font("Inter", Font.PLAIN, 32));
 		currentSubjectButton.setBounds(437, 179, 309, 86);
 		contentPane.add(currentSubjectButton);
-		
+
 		JLabel newSubjectLabel = new JLabel("Add lessons in a new subject");
 		newSubjectLabel.setFont(new Font("Inter", Font.PLAIN, 13));
 		newSubjectLabel.setBounds(136, 276, 231, 14);
 		contentPane.add(newSubjectLabel);
-		
+
 		JLabel currentSubjectLabel = new JLabel("Add lessons in a old subject");
 		currentSubjectLabel.setFont(new Font("Inter", Font.PLAIN, 13));
 		currentSubjectLabel.setBounds(511, 276, 220, 14);
 		contentPane.add(currentSubjectLabel);
-		
+
 		Color red = Color.decode("#f8cecc");
 		Color redComplement = Color.decode("#b85450");
 		JButton backButton = new JButton("Back");
@@ -107,7 +107,7 @@ public class EditFrame extends JFrame {
 		backButton.setBackground(red);
 		backButton.setFocusable(false);
 		backButton.setBorder(new LineBorder(redComplement, 2));
-		
+
 		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainFlashcardGui mainFrame = new MainFlashcardGui();

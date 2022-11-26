@@ -21,6 +21,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.border.LineBorder;
 import javax.swing.UIManager;
 
+
+
 public class DeleteAllSubjectsFrame extends JFrame {
 
 	private JPanel contentPane;
@@ -32,7 +34,7 @@ public class DeleteAllSubjectsFrame extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					DeleteAllSubjectsFrame frame = new DeleteAllSubjectsFrame(null);
+					DeleteAllSubjectsFrame frame = new DeleteAllSubjectsFrame();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -44,7 +46,7 @@ public class DeleteAllSubjectsFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public DeleteAllSubjectsFrame(String subj) {
+	public DeleteAllSubjectsFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		setSize(800, 600);
@@ -78,6 +80,13 @@ public class DeleteAllSubjectsFrame extends JFrame {
 		confirmDeleteButton.setBorder(new LineBorder(redComplement, 2));
 		confirmDeleteButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				try {
+					File toDelSubj = new File("Subjects.txt");
+					toDelSubj.delete();
+					toDelSubj.createNewFile();
+				} catch (Exception er) {
+					er.printStackTrace();
+				}
 			}
 		});
 		confirmDeleteButton.setBounds(230, 213, 313, 51);
@@ -94,7 +103,9 @@ public class DeleteAllSubjectsFrame extends JFrame {
 		cancelButton.setBorder(new LineBorder(whiteComplement, 2));
 		cancelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-	
+				OptionsFrame optionsFrame = new OptionsFrame();
+				optionsFrame.setVisible(true);
+				dispose();
 			}
 		});
 		contentPane.add(cancelButton);
