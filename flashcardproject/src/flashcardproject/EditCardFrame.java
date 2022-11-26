@@ -25,7 +25,7 @@ import java.awt.event.ActionEvent;
 public class EditCardFrame extends JFrame {
 
 	private JPanel contentPane;
-
+	
 	/**
 	 * Launch the application.
 	 */
