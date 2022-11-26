@@ -80,9 +80,20 @@ public class AnswerFrame extends JFrame {
 		nextCardButton.setBounds(155, 269, 193, 55);
 		flashcardPanel.add(nextCardButton);
 		
-		JLabel answerLabel_1 = new JLabel();
-		answerLabel_1.setFont(new Font("Inter", Font.PLAIN, 13));
-		answerLabel_1.setBounds(219, 160, 500, 16);
+		//JLabel answerLabel_1 = new JLabel();
+		//answerLabel_1.setFont(new Font("Inter", Font.PLAIN, 13));
+		//answerLabel_1.setBounds(219, 160, 500, 16);
+		
+		Color yellowSomething = Color.decode("#ffff88");
+		answerTextField = new JTextField();
+		answerTextField.setFont(new Font("Inter", Font.PLAIN, 15));
+		answerTextField.setHorizontalAlignment(SwingConstants.CENTER);
+		answerTextField.setBorder(null);
+		answerTextField.setBackground(yellowSomething);
+		answerTextField.setEditable(false);
+		answerTextField.setBounds(10, 138, 475, 35);
+		answerTextField.setColumns(10);
+		//flashcardPanel.add(answerTextField);
 		
 		Scanner theRead;
         String questionAndAnswer = "";
@@ -131,9 +142,10 @@ public class AnswerFrame extends JFrame {
     			theAnswers[indexAns] += theSetCharredAns[i];
     		}
     	}
-    	answerLabel_1.setText(theAnswers[item]);
+    	//answerLabel_1.setText(theAnswers[item]);
+	answerTextField.setText(theAnswers[item]);
 		
-		flashcardPanel.add(answerLabel_1);
+		flashcardPanel.add(answerTextField);
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
