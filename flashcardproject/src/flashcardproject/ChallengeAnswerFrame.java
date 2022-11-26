@@ -83,6 +83,16 @@ public class ChallengeAnswerFrame extends JFrame {
 		answerLabel_1.setFont(new Font("Inter", Font.PLAIN, 13));
 		answerLabel_1.setBounds(219, 160, 500, 16);
 
+		Color yellowSomething = Color.decode("#ffff88");
+		JTextField answerTextField = new JTextField();
+		answerTextField.setFont(new Font("Inter", Font.PLAIN, 30));
+		answerTextField.setHorizontalAlignment(SwingConstants.CENTER);
+		answerTextField.setBorder(null);
+		answerTextField.setBackground(yellowSomething);
+		answerTextField.setEditable(false);
+		answerTextField.setBounds(10, 138, 475, 43);
+		answerTextField.setColumns(10);
+		
 		Scanner theRead;
 		String questionAndAnswer = "";
 		int numOfQuestion = 0;
@@ -127,16 +137,16 @@ public class ChallengeAnswerFrame extends JFrame {
 				theAnswers[indexAns] += theSetCharredAns[i];
 			}
 		}
-		answerLabel_1.setText(theAnswers[item]);
-
-		flashcardPanel.add(answerLabel_1);
+		//answerLabel_1.setText(theAnswers[item]);
+		answerTextField.setText(theAnswers[item]);
+		flashcardPanel.add(answerTextField);
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-
+		
 		JLabel answerLabel = new JLabel("Answer");
-		answerLabel.setFont(new Font("Inter", Font.PLAIN, 13));
-		answerLabel.setBounds(148, 90, 61, 16);
+		answerLabel.setFont(new Font("Inter", Font.PLAIN, 18));
+		answerLabel.setBounds(148, 90, 103, 16);
 		contentPane.add(answerLabel);
 
 		JProgressBar deckProgressBar = new JProgressBar();
