@@ -133,10 +133,19 @@ public class StudyFrame extends JFrame {
 		
 		contentPane.add(questionLabel);
 		
-		JLabel hintLabel = new JLabel();
-		hintLabel.setForeground(Color.BLACK);
-		hintLabel.setFont(new Font("Inter", Font.PLAIN, 13));
-		hintLabel.setBounds(329, 480, 500, 16);
+		//JLabel hintLabel = new JLabel();
+		//hintLabel.setForeground(Color.BLACK);
+		//hintLabel.setFont(new Font("Inter", Font.PLAIN, 13));
+		//hintLabel.setBounds(329, 480, 500, 16);
+		
+		hintTextArea = new JTextField();
+		hintTextArea.setHorizontalAlignment(SwingConstants.CENTER);
+		hintTextArea.setFont(new Font("Inter", Font.PLAIN, 13));
+		hintTextArea.setEditable(false);
+		hintTextArea.setColumns(10);
+		hintTextArea.setBorder(null);
+		hintTextArea.setBackground(Color.WHITE);
+		hintTextArea.setBounds(148, 479, 495, 27);
 		
 		String[] theHints = new String[numOfQuestion];
     	for(int i = 0; i<theHints.length; i++)
@@ -166,15 +175,19 @@ public class StudyFrame extends JFrame {
     			theHints[indexHint] += theSetCharredHint[i];
     		}
     	}
-    	hintLabel.setText("HINT: "+theHints[item]);
-		contentPane.add(hintLabel);
+    	hintTextArea.setText("HINT: "+theHints[item]);
+		contentPane.add(hintTextArea);
 		
-		JLabel deckNameLabel = new JLabel("Deck Name");
-		deckNameLabel.setForeground(Color.BLACK);
-		deckNameLabel.setFont(new Font("Inter", Font.PLAIN, 36));
-		deckNameLabel.setBounds(299, 22, 231, 44);
-		deckNameLabel.setText(subj);
-		contentPane.add(deckNameLabel);
+		deckNameTextField = new JTextField();
+		deckNameTextField.setText(subj);
+		deckNameTextField.setBorder(null);
+		deckNameTextField.setFont(new Font("Inter", Font.PLAIN, 32));
+		deckNameTextField.setBackground(Color.WHITE);
+		deckNameTextField.setHorizontalAlignment(SwingConstants.CENTER);
+		deckNameTextField.setBounds(148, 27, 495, 52);
+		deckNameTextField.setEditable(false);
+		deckNameTextField.setColumns(10);
+		contentPane.add(deckNameTextField);
 		
 		JLabel progressLabel = new JLabel("");
 		progressLabel.setForeground(Color.BLACK);
