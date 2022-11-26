@@ -126,8 +126,8 @@ public class StudyFrame extends JFrame {
 		
 		JLabel questionLabel = new JLabel("Question: ");
 		questionLabel.setForeground(Color.BLACK);
-		questionLabel.setFont(new Font("Inter", Font.PLAIN, 13));
-		questionLabel.setBounds(148, 90, 500, 16);
+		questionLabel.setFont(new Font("Inter", Font.PLAIN, 18));
+		questionLabel.setBounds(148, 78, 500, 29);
 		
     	questionLabel.setText(theQuestions[item]);
 		
@@ -140,7 +140,7 @@ public class StudyFrame extends JFrame {
 		
 		hintTextArea = new JTextField();
 		hintTextArea.setHorizontalAlignment(SwingConstants.CENTER);
-		hintTextArea.setFont(new Font("Inter", Font.PLAIN, 13));
+		hintTextArea.setFont(new Font("Inter", Font.PLAIN, 18));
 		hintTextArea.setEditable(false);
 		hintTextArea.setColumns(10);
 		hintTextArea.setBorder(null);
