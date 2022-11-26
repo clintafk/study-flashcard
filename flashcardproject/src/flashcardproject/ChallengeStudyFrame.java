@@ -148,22 +148,31 @@ public class ChallengeStudyFrame extends JFrame {
 		});
 		flipCard.setBounds(155, 269, 193, 55);
 		flashcardPanel.add(flipCard);
-
+		
 		JLabel questionLabel = new JLabel("Question: ");
 		questionLabel.setForeground(Color.BLACK);
-		questionLabel.setFont(new Font("Inter", Font.PLAIN, 13));
-		questionLabel.setBounds(148, 90, 500, 16);
-
+		questionLabel.setFont(new Font("Inter", Font.PLAIN, 18));
+		questionLabel.setBounds(148, 78, 500, 29);
 		questionLabel.setText(theQuestions[item]);
-
 		contentPane.add(questionLabel);
 
-		JLabel deckNameLabel = new JLabel("Deck Name");
-		deckNameLabel.setForeground(Color.BLACK);
-		deckNameLabel.setFont(new Font("Inter", Font.PLAIN, 36));
-		deckNameLabel.setBounds(299, 22, 231, 44);
-		deckNameLabel.setText(subj);
-		contentPane.add(deckNameLabel);
+		//JLabel deckNameLabel = new JLabel("Deck Name");
+		//deckNameLabel.setForeground(Color.BLACK);
+		//deckNameLabel.setFont(new Font("Inter", Font.PLAIN, 36));
+		//deckNameLabel.setBounds(299, 22, 231, 44);
+		//deckNameLabel.setText(subj);
+		//contentPane.add(deckNameLabel);
+		
+		JTextField deckNameTextField = new JTextField();
+		deckNameTextField.setText(subj);
+		deckNameTextField.setBorder(null);
+		deckNameTextField.setFont(new Font("Inter", Font.PLAIN, 32));
+		deckNameTextField.setBackground(Color.WHITE));
+		deckNameTextField.setHorizontalAlignment(SwingConstants.CENTER);
+		deckNameTextField.setBounds(148, 27, 495, 52);
+		deckNameTextField.setEditable(false);
+		deckNameTextField.setColumns(10);
+		contentPane.add(deckNameTextField);
 
 		JLabel progressLabel = new JLabel("");
 		progressLabel.setForeground(Color.BLACK);
