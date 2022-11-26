@@ -92,6 +92,7 @@ public class EditCardFrame extends JFrame {
 		addCardButton.setBackground(lightG);
 		addCardButton.setFocusable(false);
 		addCardButton.setBorder(new LineBorder(green, 2));
+		addCardButton.setBounds(632, 6, 162, 29);
 		addCardButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				AddCardFrame addCardFrame = new AddCardFrame(subj);
@@ -99,13 +100,53 @@ public class EditCardFrame extends JFrame {
 				dispose();
 			}
 		});
-		addCardButton.setBounds(632, 6, 162, 29);
 		contentPane.add(addCardButton);
 		
 		JLabel subjectLabel = new JLabel(subj);
 		subjectLabel.setFont(new Font("Inter", Font.PLAIN, 36));
 		subjectLabel.setBounds(313, 28, 231, 44);
 		contentPane.add(subjectLabel);
+		
+		Color yellow = Color.decode("#fff2cc");
+		Color yellowComplement = Color.decode("#d6b656");
+		JButton editCardButton = new JButton("Edit Card");
+		editCardButton.setBounds(89, 46, 117, 29);
+		editCardButton.setFont(new Font("Inter", Font.PLAIN, 15));
+		editCardButton.setOpaque(true);
+		editCardButton.setBackground(yellow);
+		editCardButton.setFocusable(false);
+		editCardButton.setBorder(new LineBorder(yellowComplement, 2));
+		editCardButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		contentPane.add(editCardButton);
+		
+		JButton deleteCardButton = new JButton("Delete Card");
+		deleteCardButton.setFont(new Font("Inter", Font.PLAIN, 15));
+		deleteCardButton.setOpaque(true);
+		deleteCardButton.setBackground(red);
+		deleteCardButton.setFocusable(false);
+		deleteCardButton.setBorder(new LineBorder(redComplement, 2));
+		deleteCardButton.setBounds(603, 43, 117, 29);
+		deleteCardButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		contentPane.add(deleteCardButton);
+		
+		subjectTextField = new JTextField();
+		subjectTextField.setEditable(false);
+		subjectTextField.setBorder(null);
+		subjectTextField.setBackground(Color.WHITE);
+		subjectTextField.setFont(new Font("Inter", Font.PLAIN, 32));
+		subjectTextField.setText("Title");
+		subjectTextField.setHorizontalAlignment(SwingConstants.CENTER);
+		subjectTextField.setBounds(247, 32, 325, 39);
+		subjectTextField.setColumns(10);
+		contentPane.add(subjectTextField);
+		
 		
 		JList<String> list = new JList<String>();
 		list.setBounds(6, 6, 579, 460);
