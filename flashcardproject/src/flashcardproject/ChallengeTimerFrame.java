@@ -20,6 +20,11 @@ public class ChallengeTimerFrame extends JFrame {
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
+	
+	public static int min = 0;
+	public static int sec = 0;
+	public static int minLeft = 0;
+	public static int secLeft = 0;
 
 	/**
 	 * Launch the application.
@@ -85,6 +90,9 @@ public class ChallengeTimerFrame extends JFrame {
 		saveButton.setBorder(new LineBorder(green, 2));
 		saveButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				minLeft= min = Integer.parseInt(textField.getText());
+				secLeft = sec = Integer.parseInt(textField_1.getText());
+				
 			}
 		});
 		
@@ -93,7 +101,7 @@ public class ChallengeTimerFrame extends JFrame {
 		textField = new JTextField();
 		textField.setHorizontalAlignment(SwingConstants.CENTER);
 		textField.setFont(new Font("Lucida Grande", Font.PLAIN, 32));
-		textField.setText("00");
+		textField.setText("01");
 		textField.setBounds(323, 190, 61, 65);
 		contentPane.add(textField);
 		textField.setColumns(10);
@@ -104,7 +112,7 @@ public class ChallengeTimerFrame extends JFrame {
 		contentPane.add(lblNewLabel_1);
 		
 		textField_1 = new JTextField();
-		textField_1.setText("00");
+		textField_1.setText("33");
 		textField_1.setHorizontalAlignment(SwingConstants.CENTER);
 		textField_1.setFont(new Font("Lucida Grande", Font.PLAIN, 32));
 		textField_1.setColumns(10);

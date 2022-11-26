@@ -13,6 +13,9 @@ import java.io.File;
 import java.util.Scanner;
 import java.awt.event.ActionEvent;
 import javax.swing.JProgressBar;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+
 import java.awt.Font;
 import javax.swing.border.LineBorder;
 
@@ -138,7 +141,7 @@ public class StudyFrame extends JFrame {
 		//hintLabel.setFont(new Font("Inter", Font.PLAIN, 13));
 		//hintLabel.setBounds(329, 480, 500, 16);
 		
-		hintTextArea = new JTextField();
+		JTextField hintTextArea = new JTextField();
 		hintTextArea.setHorizontalAlignment(SwingConstants.CENTER);
 		hintTextArea.setFont(new Font("Inter", Font.PLAIN, 18));
 		hintTextArea.setEditable(false);
@@ -178,7 +181,7 @@ public class StudyFrame extends JFrame {
     	hintTextArea.setText("HINT: "+theHints[item]);
 		contentPane.add(hintTextArea);
 		
-		deckNameTextField = new JTextField();
+		JTextField deckNameTextField = new JTextField();
 		deckNameTextField.setText(subj);
 		deckNameTextField.setBorder(null);
 		deckNameTextField.setFont(new Font("Inter", Font.PLAIN, 32));

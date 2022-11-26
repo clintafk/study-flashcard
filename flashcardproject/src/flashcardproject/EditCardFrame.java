@@ -10,7 +10,9 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 import javax.swing.ListCellRenderer;
+import javax.swing.SwingConstants;
 import javax.swing.AbstractListModel;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListCellRenderer;
@@ -131,7 +133,7 @@ public class EditCardFrame extends JFrame {
 		});
 		contentPane.add(deleteCardButton);
 		
-		subjectTextField = new JTextField();
+		JTextField subjectTextField = new JTextField();
 		subjectTextField.setEditable(false);
 		subjectTextField.setBorder(null);
 		subjectTextField.setBackground(Color.WHITE);

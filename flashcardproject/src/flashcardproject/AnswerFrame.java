@@ -12,6 +12,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.border.LineBorder;
@@ -83,7 +85,7 @@ public class AnswerFrame extends JFrame {
 		//answerLabel_1.setBounds(219, 160, 500, 16);
 		
 		Color yellowSomething = Color.decode("#ffff88");
-		answerTextField = new JTextField();
+		JTextField answerTextField = new JTextField();
 		answerTextField.setFont(new Font("Inter", Font.PLAIN, 30));
 		answerTextField.setHorizontalAlignment(SwingConstants.CENTER);
 		answerTextField.setBorder(null);
