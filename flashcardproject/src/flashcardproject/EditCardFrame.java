@@ -116,7 +116,7 @@ public class EditCardFrame extends JFrame {
 		subjectTextField.setFont(new Font("Inter", Font.PLAIN, 32));
 		subjectTextField.setText(subj);
 		subjectTextField.setHorizontalAlignment(SwingConstants.CENTER);
-		subjectTextField.setBounds(247, 32, 325, 39);
+		subjectTextField.setBounds(240, 32, 335, 39);
 		subjectTextField.setColumns(10);
 		contentPane.add(subjectTextField);
 
@@ -198,7 +198,7 @@ public class EditCardFrame extends JFrame {
 		Color yellow = Color.decode("#fff2cc");
 		Color yellowComplement = Color.decode("#d6b656");
 		JButton editCardButton = new JButton("Edit Card");
-		editCardButton.setBounds(89, 46, 117, 29);
+		editCardButton.setBounds(99, 46, 117, 29);
 		editCardButton.setFont(new Font("Inter", Font.PLAIN, 15));
 		editCardButton.setOpaque(true);
 		editCardButton.setBackground(yellow);
