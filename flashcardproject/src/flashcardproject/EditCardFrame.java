@@ -107,11 +107,12 @@ public class EditCardFrame extends JFrame {
 			}
 		});
 		contentPane.add(addCardButton);
-
+		
+		Color grayish = Color.decode("#f0f0f0");
 		JTextField subjectTextField = new JTextField();
 		subjectTextField.setEditable(false);
 		subjectTextField.setBorder(null);
-		subjectTextField.setBackground(Color.WHITE);
+		subjectTextField.setBackground(grayish);
 		subjectTextField.setFont(new Font("Inter", Font.PLAIN, 32));
 		subjectTextField.setText(subj);
 		subjectTextField.setHorizontalAlignment(SwingConstants.CENTER);
