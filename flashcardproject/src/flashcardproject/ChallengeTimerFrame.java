@@ -113,28 +113,24 @@ public class ChallengeTimerFrame extends JFrame {
 
 		textField = new JTextField();
 		textField.setHorizontalAlignment(SwingConstants.CENTER);
-		textField.setBorder(new LineBorder(new Color(0, 0, 0)));
-		textField.setFont(new Font("Inter", Font.PLAIN, 32));
+		textField.setFont(new Font("Lucida Grande", Font.PLAIN, 32));
 		textField.setBounds(323, 190, 61, 65);
-		textField.setText("00");
 		contentPane.add(textField);
 		textField.setColumns(10);
 
 		JLabel lblNewLabel_1 = new JLabel(":");
-		lblNewLabel_1.setFont(new Font("Inter", Font.PLAIN, 34));
+		lblNewLabel_1.setFont(new Font("Lucida Grande", Font.PLAIN, 34));
 		lblNewLabel_1.setBounds(396, 189, 11, 65);
 		contentPane.add(lblNewLabel_1);
 
 		textField_1 = new JTextField();
-		textField_1.setBorder(new LineBorder(new Color(0, 0, 0)));
-		textField_1.setText("00");
 		textField_1.setHorizontalAlignment(SwingConstants.CENTER);
-		textField_1.setFont(new Font("Inter", Font.PLAIN, 32));
+		textField_1.setFont(new Font("Lucida Grande", Font.PLAIN, 32));
 		textField_1.setColumns(10);
 		textField_1.setBounds(419, 190, 61, 65);
 		contentPane.add(textField_1);
-		
-		JLabel minutesLabel = new JLabel("min");
+
+        JLabel minutesLabel = new JLabel("min");
 		minutesLabel.setFont(new Font("Inter", Font.PLAIN, 13));
 		minutesLabel.setBounds(343, 267, 24, 16);
 		contentPane.add(minutesLabel);
@@ -159,7 +155,7 @@ public class ChallengeTimerFrame extends JFrame {
 					forSec = true;
 				else if (forSec)
 					theSec += i;
-				else if (!forSec)
+				else
 					theMin += i;
 			}
 
@@ -167,14 +163,16 @@ public class ChallengeTimerFrame extends JFrame {
 			secLeft = sec = Integer.parseInt(theSec);
 			if (min / 10 != 0)
 				textField.setText(theMin);
-			else if (sec / 10 != 0)
-				textField_1.setText(theSec);
-			else {
+			else
 				textField.setText("0" + theMin);
+			if (sec / 10 != 0)
+				textField_1.setText(theSec);
+			else
 				textField_1.setText("0" + theSec);
-			}
 
 		} catch (Exception er) {
+            textField.setText("00");
+            textField_1.setText("00");
 			er.printStackTrace();
 		}
 	}

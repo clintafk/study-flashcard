@@ -156,6 +156,7 @@ public class ChallengeStudyFrame extends JFrame {
 		questionLabel.setFont(new Font("Inter", Font.PLAIN, 18));
 		questionLabel.setBounds(148, 78, 500, 29);
 		questionLabel.setText(theQuestions[item]);
+		
 		contentPane.add(questionLabel);
 
 		//JLabel deckNameLabel = new JLabel("Deck Name");

@@ -160,6 +160,52 @@ public class ChallengeChooseSubjectFrame extends JFrame {
 		nextButton.setBorder(new LineBorder(green, 2));
 		nextButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Scanner theRead;
+				String questionAndAnswer = "";
+				int numOfQuestion = 0;
+
+				try {
+					File myObj = new File("./Subjects/" + selected + ".txt");
+					theRead = new Scanner(myObj);
+					while (theRead.hasNextLine()) {
+						String data = theRead.nextLine();
+						questionAndAnswer += (data + "\n");
+						if (data.equals("{"))
+							numOfQuestion++;
+					}
+					theRead.close();
+				} catch (Exception er) {
+					System.out.println("An error occured.");
+					er.printStackTrace();
+				}
+				int max = 0;
+
+				String[] theQuestions = new String[numOfQuestion];
+				for (int i = 0; i < theQuestions.length; i++)
+					theQuestions[i] = "";
+
+				boolean scanQuestion = false;
+				char[] theSetCharred = questionAndAnswer.toCharArray();
+				int index = 0;
+
+				for (int i = 0; i < theSetCharred.length; i++) {
+					if (theSetCharred[i] == '{') {
+						scanQuestion = true;
+						i++;
+						max++;
+						continue;
+					} else if (theSetCharred[i] == '\n' && scanQuestion) {
+						scanQuestion = false;
+						index++;
+					} else if (scanQuestion) {
+						theQuestions[index] += theSetCharred[i];
+					}
+				}
+				try {
+					System.out.println(theQuestions[0]);
+				} catch(Exception err) {
+					return;
+				}
 				ChallengeStudyFrame studyFrame = new ChallengeStudyFrame(selected, 0);
 				studyFrame.setVisible(true);
 				dispose();
