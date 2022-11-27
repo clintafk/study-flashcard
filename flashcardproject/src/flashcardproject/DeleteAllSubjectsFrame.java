@@ -62,12 +62,12 @@ public class DeleteAllSubjectsFrame extends JFrame {
 		JLabel delAllSubLabel = new JLabel("Delete All Subjects?");
 		delAllSubLabel.setForeground(Color.RED);
 		delAllSubLabel.setFont(new Font("Inter", Font.PLAIN, 36));
-		delAllSubLabel.setBounds(220, 121, 431, 44);
+		delAllSubLabel.setBounds(240, 121, 431, 44);
 		contentPane.add(delAllSubLabel);
 		
 		JLabel warningLabel = new JLabel("Warning! Cannot be undone");
 		warningLabel.setFont(new Font("Inter", Font.PLAIN, 13));
-		warningLabel.setBounds(292, 176, 210, 16);
+		warningLabel.setBounds(320, 176, 210, 16);
 		contentPane.add(warningLabel);
 		
 		Color red = Color.decode("#f8cecc");
@@ -117,13 +117,13 @@ public class DeleteAllSubjectsFrame extends JFrame {
 				}
 			}
 		});
-		confirmDeleteButton.setBounds(230, 213, 313, 51);
+		confirmDeleteButton.setBounds(250, 213, 313, 51);
 		contentPane.add(confirmDeleteButton);
 		
 		Color white = Color.decode("#f5f5f5");
 		Color whiteComplement = Color.decode("#333333");
 		JButton cancelButton = new JButton("Cancel");
-		cancelButton.setBounds(230, 275, 313, 51);
+		cancelButton.setBounds(250, 275, 313, 51);
 		cancelButton.setFont(new Font("Inter", Font.PLAIN, 24));
 		cancelButton.setOpaque(true);
 		cancelButton.setBackground(white);
