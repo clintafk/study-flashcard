@@ -9,6 +9,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.ListCellRenderer;
@@ -21,12 +23,14 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.FileWriter;
 import java.util.Scanner;
 import java.awt.event.ActionEvent;
 
 public class EditCardFrame extends JFrame {
 
 	private JPanel contentPane;
+	public String selected;
 
 	/**
 	 * Launch the application.
@@ -104,35 +108,6 @@ public class EditCardFrame extends JFrame {
 		});
 		contentPane.add(addCardButton);
 
-		Color yellow = Color.decode("#fff2cc");
-		Color yellowComplement = Color.decode("#d6b656");
-		JButton editCardButton = new JButton("Edit Card");
-		editCardButton.setBounds(89, 46, 117, 29);
-		editCardButton.setFont(new Font("Inter", Font.PLAIN, 15));
-		editCardButton.setOpaque(true);
-		editCardButton.setBackground(yellow);
-		editCardButton.setFocusable(false);
-		editCardButton.setBorder(new LineBorder(yellowComplement, 2));
-		editCardButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-			}
-		});
-		contentPane.add(editCardButton);
-
-		JButton deleteCardButton = new JButton("Delete Card");
-		deleteCardButton.setFont(new Font("Inter", Font.PLAIN, 15));
-		deleteCardButton.setOpaque(true);
-		deleteCardButton.setBackground(red);
-		deleteCardButton.setFocusable(false);
-		deleteCardButton.setBorder(new LineBorder(redComplement, 2));
-		deleteCardButton.setBounds(603, 43, 117, 29);
-		deleteCardButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		contentPane.add(deleteCardButton);
-
 		JTextField subjectTextField = new JTextField();
 		subjectTextField.setEditable(false);
 		subjectTextField.setBorder(null);
@@ -204,9 +179,55 @@ public class EditCardFrame extends JFrame {
 				return values[index];
 			}
 		});
+		list.addListSelectionListener(new ListSelectionListener() {
+			public void valueChanged(ListSelectionEvent arg0) {
+				if (!arg0.getValueIsAdjusting()) {
+					selected = list.getSelectedValue().toString();
+				}
+			}
+		});
+		try {
+			list.setSelectionInterval(0, 0);
+		} catch (NullPointerException er) {
+		}
+		
 		DefaultListCellRenderer renderer = (DefaultListCellRenderer) list.getCellRenderer();
 		renderer.setHorizontalAlignment(JLabel.CENTER);
 
+		Color yellow = Color.decode("#fff2cc");
+		Color yellowComplement = Color.decode("#d6b656");
+		JButton editCardButton = new JButton("Edit Card");
+		editCardButton.setBounds(89, 46, 117, 29);
+		editCardButton.setFont(new Font("Inter", Font.PLAIN, 15));
+		editCardButton.setOpaque(true);
+		editCardButton.setBackground(yellow);
+		editCardButton.setFocusable(false);
+		editCardButton.setBorder(new LineBorder(yellowComplement, 2));
+		editCardButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				EditCardDetails editCardDetails = new EditCardDetails(subj, selected);
+				editCardDetails.setVisible(true);
+				dispose();
+			}
+		});
+		contentPane.add(editCardButton);
+
+		JButton deleteCardButton = new JButton("Delete Card");
+		deleteCardButton.setFont(new Font("Inter", Font.PLAIN, 15));
+		deleteCardButton.setOpaque(true);
+		deleteCardButton.setBackground(red);
+		deleteCardButton.setFocusable(false);
+		deleteCardButton.setBorder(new LineBorder(redComplement, 2));
+		deleteCardButton.setBounds(603, 43, 117, 29);
+		deleteCardButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				DeleteCardFrame editCardFrame = new DeleteCardFrame(subj, selected);
+				editCardFrame.setVisible(true);
+				dispose();
+			}
+		});
+		contentPane.add(deleteCardButton);
+		
 		JScrollPane sp = new JScrollPane();
 		sp.setViewportView(list);
 		sp.setBounds(6, 6, 623, 460);

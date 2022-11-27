@@ -103,6 +103,9 @@ public class ChallengeTimerFrame extends JFrame {
 				} catch (Exception er) {
 					er.printStackTrace();
 				}
+				OptionsFrame optionsFrame = new OptionsFrame();
+				optionsFrame.setVisible(true);
+				dispose();
 			}
 		});
 

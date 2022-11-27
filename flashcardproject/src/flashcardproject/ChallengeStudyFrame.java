@@ -13,6 +13,8 @@ import java.io.File;
 import java.util.Scanner;
 import java.awt.event.ActionEvent;
 import javax.swing.JProgressBar;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.Timer;
 
 import java.awt.Font;
@@ -167,7 +169,7 @@ public class ChallengeStudyFrame extends JFrame {
 		deckNameTextField.setText(subj);
 		deckNameTextField.setBorder(null);
 		deckNameTextField.setFont(new Font("Inter", Font.PLAIN, 32));
-		deckNameTextField.setBackground(Color.WHITE));
+		deckNameTextField.setBackground(Color.WHITE);
 		deckNameTextField.setHorizontalAlignment(SwingConstants.CENTER);
 		deckNameTextField.setBounds(148, 27, 495, 52);
 		deckNameTextField.setEditable(false);

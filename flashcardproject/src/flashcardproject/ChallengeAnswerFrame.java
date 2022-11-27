@@ -12,6 +12,9 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.border.LineBorder;
@@ -54,6 +57,31 @@ public class ChallengeAnswerFrame extends JFrame {
 		contentPane.add(flashcardPanel);
 		flashcardPanel.setLayout(null);
 
+		JLabel timerLabel = new JLabel();
+		timerLabel.setFont(new Font("Inter", Font.PLAIN, 32));
+		timerLabel.setBounds(690, 6, 89, 44);
+		contentPane.add(timerLabel);
+
+		Timer timer = new Timer(1000, new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				if (ChallengeTimerFrame.minLeft == 0 && ChallengeTimerFrame.secLeft == 0) {
+					timerLabel.setForeground(Color.RED);
+					timerLabel.setText(ChallengeTimerFrame.minLeft + ":0" + ChallengeTimerFrame.secLeft);
+					return;
+				} else if (ChallengeTimerFrame.secLeft / 10 != 0)
+					timerLabel.setText(ChallengeTimerFrame.minLeft + ":" + ChallengeTimerFrame.secLeft);
+				else
+					timerLabel.setText(ChallengeTimerFrame.minLeft + ":0" + ChallengeTimerFrame.secLeft);
+				ChallengeTimerFrame.secLeft--;
+				if (ChallengeTimerFrame.secLeft == -1) {
+					ChallengeTimerFrame.minLeft--;
+					ChallengeTimerFrame.secLeft = 59;
+				}
+			}
+		});
+		timer.start();
+
 		Color lightG = Color.decode("#D5E8D4");
 		Color green = Color.decode("#82b366");
 		JButton nextCardButton = new JButton("Next Card");
@@ -65,6 +93,7 @@ public class ChallengeAnswerFrame extends JFrame {
 		final int stat = item + 1, limit = max;
 		nextCardButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				timer.stop();
 				if (stat != limit) {
 					ChallengeStudyFrame studyFrame = new ChallengeStudyFrame(subj, stat);
 					studyFrame.setVisible(true);
@@ -137,7 +166,6 @@ public class ChallengeAnswerFrame extends JFrame {
 				theAnswers[indexAns] += theSetCharredAns[i];
 			}
 		}
-		//answerLabel_1.setText(theAnswers[item]);
 		answerTextField.setText(theAnswers[item]);
 		flashcardPanel.add(answerTextField);
 
@@ -164,11 +192,6 @@ public class ChallengeAnswerFrame extends JFrame {
 
 		progressLabel.setText(deckProgressBar.getValue() + " / " + deckProgressBar.getMaximum());
 		contentPane.add(progressLabel);
-
-		JLabel lblNewLabel = new JLabel("14:56");
-		lblNewLabel.setFont(new Font("Inter", Font.PLAIN, 32));
-		lblNewLabel.setBounds(690, 6, 89, 44);
-		contentPane.add(lblNewLabel);
 
 	}
 
