@@ -81,9 +81,37 @@ public class DeleteAllSubjectsFrame extends JFrame {
 		confirmDeleteButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					File toDelSubj = new File("Subjects.txt");
-					toDelSubj.delete();
-					toDelSubj.createNewFile();
+					File subj = new File("Subjects.txt");
+					Scanner subSc = new Scanner(subj);
+					int range = 1;
+					while (subSc.hasNextLine()) {
+						subSc.nextLine();
+						range++;
+					}
+					subSc.close();
+
+					Scanner subCon = new Scanner(subj);
+
+					String[] subjects = new String[range - 1];
+
+					int i = 0;
+					while (subCon.hasNextLine()) {
+						String data = subCon.nextLine();
+						subjects[i] = data;
+						i++;
+					}
+					subCon.close();
+					
+					for(String j: subjects) {
+						File toDelete = new File("./Subjects/"+j+".txt");
+						toDelete.delete();
+					}
+					subj.delete();
+					subj.createNewFile();
+					
+					OptionsFrame optionsFrame = new OptionsFrame();
+					optionsFrame.setVisible(true);
+					dispose();
 				} catch (Exception er) {
 					er.printStackTrace();
 				}
