@@ -180,7 +180,7 @@ public class StudyFrame extends JFrame {
 		deckNameTextField.setFont(new Font("Inter", Font.PLAIN, 32));
 		deckNameTextField.setBackground(Color.WHITE);
 		deckNameTextField.setHorizontalAlignment(SwingConstants.CENTER);
-		deckNameTextField.setBounds(148, 27, 495, 52);
+		deckNameTextField.setBounds(152, 15, 495, 52);
 		deckNameTextField.setEditable(false);
 		deckNameTextField.setColumns(10);
 		contentPane.add(deckNameTextField);
